@@ -15,7 +15,9 @@ public class SavingsAccount {
 	 * Constructs a savings account with a zero balance and zero percent interest rate
 	 */
 	public SavingsAccount() {
-		// FILL IN
+        balance = 0;
+		interestRate = 0;
+		numTransactions = 0;
 	}
 
 
@@ -26,7 +28,8 @@ public class SavingsAccount {
 	 * @param rate           the interest rate in percent (assume it will be >= 0)
 	 */
 	public SavingsAccount(double initialBalance, double rate) {
-		// FILL IN
+        balance = initialBalance;
+		interestRate = rate;
 	}
 
 
@@ -36,7 +39,7 @@ public class SavingsAccount {
 	 * @param amount the amount to deposit (assume it will be > 0)
 	 */
 	public void deposit(double amount) {
-		// FILL IN
+        balance += amount;
 	}
 
 
@@ -46,7 +49,7 @@ public class SavingsAccount {
 	 * @param amount the amount to withdraw (assume it will be > 0)
 	 */
 	public void withdraw(double amount) {
-		// FILL IN
+        balance -= amount;
 	}
 
 
@@ -56,7 +59,7 @@ public class SavingsAccount {
 	 * @return the current balance
 	 */
 	public double getBalance() {
-		return -1.0; // FIX ME
+        return balance;
 	}
 	
 	
@@ -67,7 +70,7 @@ public class SavingsAccount {
 	 * @return	the number of transactions
 	 */
 	public int getNumTransactions() {
-		return -1; // FIX ME
+        return numTransactions;
 	}
 
 
@@ -75,6 +78,6 @@ public class SavingsAccount {
 	 * Adds interest to the savings account.
 	 */
 	public void addInterest() {
-		// FILL IN
+        balance += balance * interestRate * 0.01;
 	}
 }

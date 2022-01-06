@@ -13,7 +13,7 @@ public class Moth {
 	 * @param initialPosition the initial position of the moth (assume always >= 0)
 	 */
 	public Moth(double initialPosition) {
-		// FILL IN
+        position = initialPosition;
 	}
 
 
@@ -24,7 +24,7 @@ public class Moth {
 	 * @param lightPosition the position of the light (assume always >= 0)
 	 */
 	public void moveToLight(double lightPosition) {
-		// FILL IN
+        position = (position + lightPosition) / 2.0;
 	}
 
 
@@ -34,6 +34,6 @@ public class Moth {
 	 * @return the Moth's current position
 	 */
 	public double getPosition() {
-		return -1.0; // FIX ME
+        return position;
 	}
 }

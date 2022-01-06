@@ -6,6 +6,7 @@ package labs.lab1;
 public class Battery {
 
 	// ADD YOUR INSTANCE VARIABLES HERE
+	private double cap, remain;
 
 	/**
 	 * Create a battery with specified capacity.
@@ -13,7 +14,8 @@ public class Battery {
 	 * @param capacity maximum capacity, measured in milliampere hours
 	 */
 	public Battery(double capacity) {
-		// FILL IN
+        cap = capacity;
+		remain = capacity;
 	}
 
 
@@ -23,7 +25,7 @@ public class Battery {
 	 * @param amount amount of battery used (assume it will not be > its current capacity
 	 */
 	public void drain(double amount) {
-		// FILL IN
+        remain -= amount;
 	}
 
 
@@ -31,7 +33,7 @@ public class Battery {
 	 * Recharge the battery to maximum capacity.
 	 */
 	public void charge() {
-		// FILL IN
+        remain = cap;
 	}
 
 
@@ -41,6 +43,6 @@ public class Battery {
 	 * @return remaining capacity
 	 */
 	public double getRemainingCapacity() {
-		return -1.0; // FIX ME
+        return remain;
 	}
 }

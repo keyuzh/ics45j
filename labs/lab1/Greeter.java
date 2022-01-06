@@ -7,6 +7,7 @@ package labs.lab1;
 public class Greeter {
 
 	// ADD YOUR INSTANCE VARIABLES HERE
+	private String name;
 
 	/**
 	 * Creates a Greeter based on the provided name
@@ -14,7 +15,7 @@ public class Greeter {
 	 * @param name name of person to greet
 	 */
 	public Greeter(String name) {
-		// FILL IN
+        this.name = name;
 	}
 
 
@@ -24,7 +25,7 @@ public class Greeter {
 	 * @return the greeting
 	 */
 	public String sayHello() {
-		return ""; // FIX ME
+		return "Hello, " + name;
 	}
 
 
@@ -34,6 +35,6 @@ public class Greeter {
 	 * @return the farewell message
 	 */
 	public String sayGoodbye() {
-		return ""; // FIX ME
+		return "Goodbye, " + name;
 	}
 }

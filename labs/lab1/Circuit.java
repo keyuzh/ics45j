@@ -6,6 +6,8 @@ package labs.lab1;
 public class Circuit {
 
 	// ADD YOUR INSTANCE VARIABLES HERE
+	private int lampState;
+	private int switch1State, switch2State;
 
 	/**
 	 * Gets the current state of the indicated switch
@@ -14,7 +16,7 @@ public class Circuit {
 	 * @return the state of the indicated switch (0 = down, 1 = up)
 	 */
 	public int getSwitchState(int switchNum) {
-		return -1; // FIX ME
+        return switchNum == 1 ? switch1State : switch2State;
 	}
 
 
@@ -24,7 +26,7 @@ public class Circuit {
 	 * @return the state of the lamp (0 = off, 1 = on)
 	 */
 	public int getLampState() {
-		return -1; // FIX ME
+        return lampState;
 	}
 
 
@@ -35,6 +37,12 @@ public class Circuit {
 	 * @param switch the number of the switch (1 or 2)
 	 */
 	public void toggleSwitch(int switchNum) {
-		// FILL IN
+		if (switchNum == 1) {
+			switch1State = 1 - switch1State;
+		}
+		else {
+			switch2State = 1 - switch2State;
+		}
+		lampState = 1 - lampState;
 	}
 }
