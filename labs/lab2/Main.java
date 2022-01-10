@@ -1,5 +1,7 @@
 package labs.lab2;
 
+import java.util.Arrays;
+import java.util.Objects;
 import java.util.Scanner;
 
 class Main {
@@ -24,7 +26,12 @@ class Main {
 	 * 
 	 */
 	public static void problem2_formatPhoneNumber(Scanner in) {
-		// FILL IN
+		System.out.print("Please enter a ten-digit phone number: ");
+        long unformatted = in.nextLong();
+		long areaCode = unformatted / 1_000_0000;
+		long middle = (unformatted / 1_0000) % 1_000;
+		long last = unformatted % 1_0000;
+		System.out.printf("(%03d) %03d-%04d", areaCode, middle, last);
 	}
 
 
@@ -44,7 +51,15 @@ class Main {
 	 * @return the result of the reversal/addition, as a string
 	 */
 	public static String problem4_reverseAndAdd(int num) {
-		return ""; // FIX ME
+		if (num < 10) {
+			return "Number too small!";
+		}
+		int discarded = num / 100;
+		int last2 = num % 100;
+		int reversed = (last2 / 10) + ((last2 % 10) * 10);
+		int sum = discarded + reversed;
+		return String.format("Input: %d, Last 2 digits: %d, Reversed: %d, Sum: %d",
+				num, last2, reversed, sum);
 	}
 
 
@@ -59,7 +74,16 @@ class Main {
 	 *         over, return 0
 	 */
 	public static int problem6_playBlackjack(int a, int b) {
-		return -1; // FIX ME
+		if (a <= 21 && b <= 21) {
+			return Math.max(a, b);
+		}
+		if (a <= 21) {
+			return a;
+		}
+		if (b <= 21) {
+			return b;
+		}
+		return 0;
 	}
 
 
@@ -68,15 +92,17 @@ class Main {
 	 * one is large. Return true if the three values are evenly spaced, so the
 	 * difference between small and medium is the same as the difference between
 	 * medium and large.
-	 * 
+	 *
 	 * @param a first integer
 	 * @param b second integer
 	 * @param c third integer
-	 * 
+	 *
 	 * @return true if the three values are evenly space, false otherwise
 	 */
 	public static boolean problem7_evenlySpaced(int a, int b, int c) {
-		return false; // FIX ME
+		int[] t = {a, b, c};
+		Arrays.sort(t);
+		return (t[2] - t[1] == t[1] - t[0]);
 	}
 
 
@@ -92,6 +118,39 @@ class Main {
 	 * @param in the Scanner to be used for user input
 	 */
 	public static void problem9_getSoundLevel(Scanner in) {
-		// FILL IN
+        final double p0 = 2e-5;
+        System.out.print("Enter sound level and unit (dB or Pa): ");
+		double value = in.nextDouble();
+		String unit = in.next();
+		boolean validUnit = (unit.equals("dB") || unit.equals("Pa"));
+		boolean negative = (value < 0);
+		if (!validUnit && negative) { System.out.print("Invalid unit and sound level"); return;}
+		if (!validUnit) { System.out.print("Invalid unit"); return;}
+		if (negative) { System.out.print("Invalid sound level"); return;}
+		if (unit.equals("Pa")) {
+			value = 20.0 * Math.log10(value / p0);
+		}
+		if (value < 30.0) {
+			System.out.print("Light leaf rustling");
+		}
+		else if (value < 60.0) {
+			System.out.print("Calm library");
+		}
+		else if (value < 90.0) {
+			System.out.print("Normal conversation");
+		}
+		else if (value < 100.0) {
+			System.out.print("Traffic on a busy roadway at 10 m");
+		}
+		else if (value < 120.0) {
+			System.out.print("Jack hammer at 1 m");
+		}
+		else if (value < 130.0) {
+			System.out.print("Possible hearing damage");
+		}
+		else {
+
+			System.out.print("Threshold of pain");
+		}
 	}
 }

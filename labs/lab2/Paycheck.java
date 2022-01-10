@@ -5,6 +5,7 @@ package labs.lab2;
  */
 public class Paycheck {
 	// ADD YOUR INSTANCE VARIABLES HERE
+	double wage, hourWorked, taxRate;
 
 	/**
 	 * Constructs a PayCheck for a given week.
@@ -14,7 +15,9 @@ public class Paycheck {
 	 * @param taxRate	percentage this employee is taxed
 	 */
 	public Paycheck(double wage, double hours, double taxRate) {
-		// FILL IN
+        this.wage = wage;
+		this.hourWorked = hours;
+		this.taxRate = taxRate;
 	}
 
 	/**
@@ -24,6 +27,10 @@ public class Paycheck {
 	 * the full amount earned
 	 */
 	public double getPay() {
-		return -1.0; // FIX ME
+        return (
+				(wage * Math.min(40.0, hourWorked)
+				+ 2.0 * wage * Math.max(0.0, hourWorked-40.0))
+				* 0.01 * (100.0-taxRate)
+				);
 	}
 }
