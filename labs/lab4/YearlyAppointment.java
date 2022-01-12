@@ -6,6 +6,7 @@ package labs.lab4;
 public class YearlyAppointment extends Appointment {
 
 	// ADD YOUR INSTANCE VARIABLES HERE
+	int month, day;
 
 	/**
 	 * Initializes appointment that happens every year on a given date.
@@ -15,17 +16,20 @@ public class YearlyAppointment extends Appointment {
 	 * @param description the text description of the appointment
 	 */
 	public YearlyAppointment(int month, int day, String description) {
-		// FILL IN
+		super();
+		super.setDescription(description);
+        this.day = day;
+		this.month = month;
 	}
 
 
 	public int getMonth() {
-		return -1; // FIX ME
+        return month;
 	}
 
 
 	public int getDay() {
-		return -1; // FIX ME
+        return day;
 	}
 
 
@@ -39,7 +43,7 @@ public class YearlyAppointment extends Appointment {
 	 * @return true if the appointment occurs on the given date.
 	 */
 	public boolean occursOn(int year, int month, int day) {
-		return false; // FIX ME
+        return this.day == day && this.month == month;
 	}
 
 
@@ -50,7 +54,14 @@ public class YearlyAppointment extends Appointment {
 	@Override
 	public boolean equals(Object otherObject) {
 		// HINT: CALL THE SUPERCLASS'S EQUALS METHOD AS PART OF YOUR IMPLEMENTATION
-		return false; // FIX ME
+		if (!super.equals(otherObject)) {
+			return false;
+		}
+		if (otherObject.getClass() != this.getClass()) {
+			return false;
+		}
+		YearlyAppointment other = ((YearlyAppointment) otherObject);
+		return this.day == other.getDay() && this.month == other.getMonth();
 	}
 
 }

@@ -56,7 +56,7 @@ public abstract class Appointment {
 	 */
 	@Override
 	public boolean equals(Object otherAppointment) {
-		return false; // FIX ME
+        return this.toString().equals(otherAppointment.toString());
 	}
 
 }

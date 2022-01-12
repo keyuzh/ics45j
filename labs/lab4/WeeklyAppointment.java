@@ -1,6 +1,7 @@
 package labs.lab4;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 
 /**
  * Weekly appointment.
@@ -8,6 +9,7 @@ import java.time.DayOfWeek;
 public class WeeklyAppointment extends Appointment {
 
 	// ADD YOUR INSTANCE VARIABLES HERE
+	DayOfWeek dow;
 
 	/**
 	 * Initializes appointment for a given day of the week.
@@ -16,12 +18,14 @@ public class WeeklyAppointment extends Appointment {
 	 * @param description the text description of the appointment
 	 */
 	public WeeklyAppointment(DayOfWeek dayOfWeek, String description) {
-		// FILL IN
+        super();
+		super.setDescription(description);
+		dow = dayOfWeek;
 	}
 
 
 	public DayOfWeek getDayOfWeek() {
-		return DayOfWeek.FRIDAY; // FIX ME
+		return dow;
 	}
 
 
@@ -34,7 +38,8 @@ public class WeeklyAppointment extends Appointment {
 	 * @return true if the appointment occurs on the given date.
 	 */
 	public boolean occursOn(int year, int month, int day) {
-		return false; // FIX ME
+		LocalDate ld = LocalDate.of(year, month, day);
+		return ld.getDayOfWeek() == dow;
 	}
 
 
@@ -45,6 +50,13 @@ public class WeeklyAppointment extends Appointment {
 	@Override
 	public boolean equals(Object otherObject) {
 		// HINT: CALL THE SUPERCLASS'S EQUALS METHOD AS PART OF YOUR IMPLEMENTATION
-		return false; // FIX ME
+		if (!super.equals(otherObject)) {
+			return false;
+		}
+		if (otherObject.getClass() != this.getClass()) {
+			return false;
+		}
+		WeeklyAppointment other = ((WeeklyAppointment) otherObject);
+		return this.dow == other.getDayOfWeek();
 	}
 }

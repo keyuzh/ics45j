@@ -11,7 +11,8 @@ public class DailyAppointment extends Appointment {
 	 * @param description the text description of the appointment
 	 */
 	public DailyAppointment(String description) {
-		// FILL IN
+        super();
+		super.setDescription(description);
 	}
 
 
@@ -25,7 +26,7 @@ public class DailyAppointment extends Appointment {
 	 * @return true if the appointment occurs on the given date.
 	 */
 	public boolean occursOn(int year, int month, int day) {
-		return false; // FIX ME
+		return true;
 	}
 
 
@@ -36,7 +37,10 @@ public class DailyAppointment extends Appointment {
 	@Override
 	public boolean equals(Object otherObject) {
 		// HINT: CALL THE SUPERCLASS'S EQUALS METHOD AS PART OF YOUR IMPLEMENTATION
-		return false; // FIX ME
+		if (otherObject.getClass() != this.getClass()) {
+			return false;
+		}
+		return super.equals(otherObject);
 	}
 
 }

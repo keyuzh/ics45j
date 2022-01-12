@@ -1,14 +1,16 @@
 package labs.lab4;
 
+import java.util.ArrayList;
+
 public class TimeKeeper {
 	// ADD YOUR INSTANCE VARIABLES HERE
-	
-	
+	private ArrayList<Activity> activities;
+
 	/**
 	 * Constructs a new TimeKeeper, with no activities
 	 */
 	public TimeKeeper() {
-		// FILL IN
+		activities = new ArrayList<>();
 	}
 	
 	
@@ -18,7 +20,7 @@ public class TimeKeeper {
 	 * @param a	the activity to record
 	 */
 	public void doActivity(Activity a) {
-		// FILL IN
+        activities.add(a);
 	}
 	
 	
@@ -29,7 +31,13 @@ public class TimeKeeper {
 	 * @return	total time (in hours) spent in the category	
 	 */
 	public double getTotalTimeForCategory(Activity.Category category) {
-		return -1.0; // FIX ME
+		double total = 0.0;
+		for (Activity a: activities) {
+			if (a.getCategory().equals(category)) {
+				total += a.getTime();
+			}
+		}
+		return total;
 	}
 	
 	
@@ -40,6 +48,15 @@ public class TimeKeeper {
 	 * @return	total percentage of time spent in the category	
 	 */
 	public double getPercentageOfTimeSpentInCategory(Activity.Category category) {
-		return -1.0; // FIX ME
+		double totalTime = 0.0;
+		double categoryTime = 0.0;
+		for (Activity a: activities) {
+			if (a.getCategory().equals(category)) {
+				categoryTime += a.getTime();
+			}
+			totalTime += a.getTime();
+		}
+		if (totalTime == 0.0) { return 0.0; }
+		return 100.0 * categoryTime / totalTime;
 	}
 }

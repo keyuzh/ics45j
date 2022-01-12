@@ -24,21 +24,23 @@ public class Activity {
 	 * @param category		category of this activity
 	 */
 	public Activity(String description, double time, Category category) {
-		// FILL IN
+        this.description = description;
+		this.time = time;
+		this.category = category;
 	}
 	
 	
 	public String getDescription() {
-		return ""; // FIX ME
+		return description;
 	}
 	
 	
 	public double getTime() {
-		return -1.0; // FIX ME
+		return time;
 	}
 	
 	
 	public Category getCategory() {
-		return Category.WORK; // FIX ME
+		return category;
 	}
 }

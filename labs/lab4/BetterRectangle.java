@@ -26,7 +26,7 @@ public class BetterRectangle extends Rectangle {
 	 */
 	public BetterRectangle(int x, int y, int width, int height) {
 		// HINT: CALL THE SUPERCLASS CONSTRUCTOR AS PART OF YOUR IMPLEMENTATION
-		// FILL IN
+        super(x, y, width, height);
 	}
 
 
@@ -36,7 +36,7 @@ public class BetterRectangle extends Rectangle {
 	 * @return the perimeter of the rectangle
 	 */
 	public double getPerimeter() {
-		return -1.0; // FIX ME
+        return width + width + height + height;
 	}
 
 
@@ -46,6 +46,6 @@ public class BetterRectangle extends Rectangle {
 	 * @return the area of the rectangle
 	 */
 	public double getArea() {
-		return -1.0; // FIX ME
+        return width * height;
 	}
 }

@@ -10,6 +10,16 @@ import java.util.List;
 public class AdventureGame {
 
 	// ADD YOUR INSTANCE VARIABLES HERE
+	private List<Point> traps, jetPacks;
+	private int direction;
+	private Point location;
+	private int numMoves;
+	private int jetPackCount;
+
+	private final int NORTH = 0;
+	private final int EAST = 1;
+	private final int SOUTH = 2;
+	private final int WEST = 3;
 
 	/**
 	 * Constructs a new game with player location 0, 0 (in the center of the world)
@@ -21,7 +31,11 @@ public class AdventureGame {
 	 *                 bounds, and not at 0, 0)
 	 */
 	public AdventureGame(List<Point> traps, List<Point> jetPacks) {
-		// FILL IN
+        this.jetPacks = jetPacks;
+		this.traps = traps;
+		this.direction = 0;
+		this.location = new Point(0,0);
+		this.numMoves = 0;
 	}
 
 
@@ -29,7 +43,12 @@ public class AdventureGame {
 	 * Turns the player to the left
 	 */
 	public void playerTurnLeft() {
-		// FILL IN
+        if (direction == 0) {
+			direction = 3;
+		}
+		else {
+			direction--;
+		}
 	}
 
 
@@ -37,16 +56,57 @@ public class AdventureGame {
 	 * Turns the player to the right
 	 */
 	public void playerTurnRight() {
-		// FILL IN
+		direction++;
+		direction %= 4;
 	}
 
+	private static boolean isValidLocation(Point p) {
+		return p.x >= -5 && p.x <= 5 && p.y >= -5 && p.y <= 5;
+	}
+
+	private boolean isJetpack() {
+		return jetPacks.contains(location);
+	}
+
+	private boolean isTrap() {
+		return traps.contains(location);
+	}
 
 	/**
 	 * Moves the player one step in the direction they're facing, as long as the
 	 * move is a valid one (within the bounds of the world)
 	 */
 	public void movePlayer() {
-		// FILL IN
+		Point newLocation = new Point(getPlayerLocation());
+		switch (direction) {
+			case NORTH -> newLocation.translate(0, 1);
+			case SOUTH -> newLocation.translate(0, -1);
+			case EAST -> newLocation.translate(1, 0);
+			case WEST -> newLocation.translate(-1, 0);
+		}
+		if (!isValidLocation(newLocation)) { return; }
+		this.location = newLocation;
+		numMoves++;
+
+		if (isJetpack() && jetPackCount < 3) {
+			jetPacks.remove(location);
+			jetPackCount++;
+			System.out.print("Picked up jet pack! ");
+		}
+		if (isTrap()) {
+			System.out.print("Fell into a trap! ");
+			if (jetPackCount > 0) {
+				jetPackCount--;
+				System.out.print("Used jet pack! ");
+			}
+			else {
+				System.out.print("You lose!");
+				return;
+			}
+		}
+		if (numMoves >= 30) {
+			System.out.print("You win!");
+		}
 	}
 
 
@@ -56,7 +116,7 @@ public class AdventureGame {
 	 * @return the player's current location
 	 */
 	public Point getPlayerLocation() {
-		return null; // FIX ME
+        return location;
 	}
 
 
@@ -67,7 +127,13 @@ public class AdventureGame {
 	 * @return	the direction in which the player is currently facing
 	 */
 	public String getPlayerDirection() {
-		return ""; // FIX ME
+		return switch (direction) {
+			case NORTH -> "NORTH";
+			case SOUTH -> "SOUTH";
+			case EAST -> "EAST";
+			case WEST -> "WEST";
+			default -> "";
+		};
 	}
 	
 	
@@ -77,6 +143,6 @@ public class AdventureGame {
 	 * @return	the number of moves the player has taken
 	 */
 	public int getNumMovesMade() {
-		return -1; // FIX ME
+        return numMoves;
 	}
 }

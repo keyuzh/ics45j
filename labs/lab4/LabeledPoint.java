@@ -8,6 +8,7 @@ import java.awt.Point;
 public class LabeledPoint extends Point {
 
 	// ADD YOUR INSTANCE VARIABLES HERE
+	String label;
 
 	/**
 	 * Constructs a labeled point at (x,y) with a given label.
@@ -18,7 +19,8 @@ public class LabeledPoint extends Point {
 	 */
 	public LabeledPoint(int x, int y, String label) {
 		// HINT: CALL THE SUPERCLASS CONSTRUCTOR AS PART OF YOUR IMPLEMENTATION
-		// FILL IN
+        super(x, y);
+		this.label = label;
 	}
 
 
@@ -28,6 +30,6 @@ public class LabeledPoint extends Point {
 	@Override
 	public String toString() {
 		// HINT: CALL THE SUPERCLASS TOSTRING AS PART OF YOUR IMPLEMENTATION
-		return ""; // FIX ME
+        return String.format("%s label=%s", super.toString(), label);
 	}
 }
