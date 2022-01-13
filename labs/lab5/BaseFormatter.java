@@ -9,6 +9,7 @@ package labs.lab5;
 public class BaseFormatter implements NumberFormatter {
 
 	// ADD YOUR INSTANCE VARIABLES HERE
+	private int base;
 
 	/**
 	 * Constructs a new BaseFormatter with base n. If n is not between 2 and 36
@@ -17,7 +18,7 @@ public class BaseFormatter implements NumberFormatter {
 	 * @param n the base for this formatter
 	 */
 	public BaseFormatter(int n) {
-		// FILL IN
+		base = (n < 2 || n > 36) ? 10 : n;
 	}
 
 
@@ -28,7 +29,7 @@ public class BaseFormatter implements NumberFormatter {
 	 * @param n the number to format
 	 */
 	public String format(int n) {
-		return ""; // FIX ME
+		return Integer.toString(n, base);
 	}
 
 }

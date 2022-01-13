@@ -8,6 +8,7 @@ package labs.lab5;
 public class Dragon extends Enemy {
 
 	// ADD YOUR INSTANCE VARIABLES EHRE
+	private boolean fireBreathing;
 
 	/**
 	 * Constructs a new Dragon
@@ -15,12 +16,13 @@ public class Dragon extends Enemy {
 	 * @param fireBreathing whether or not it's fire-breathing
 	 */
 	public Dragon(boolean fireBreathing) {
-		// FILL IN
+		super();
+        this.fireBreathing = fireBreathing;
 	}
 
 
 	public boolean isFireBreathing() {
-		return false; // FIX ME
+        return fireBreathing;
 	}
 
 
@@ -32,7 +34,8 @@ public class Dragon extends Enemy {
 	 *         this Dragon)
 	 */
 	public int attack() {
-		return -1; // FIX ME
+        setHealth(getHealth()+25);
+		return -25;
 	}
 
 
@@ -41,7 +44,8 @@ public class Dragon extends Enemy {
 	 * Dragon's health by 10
 	 */
 	public void advanceTime() {
-		// FILL IN
+        fireBreathing = !fireBreathing;
+		setHealth(getHealth()-10);
 	}
 
 }

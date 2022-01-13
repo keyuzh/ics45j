@@ -13,7 +13,7 @@ public class DefaultFormatter implements NumberFormatter {
 	 * @param n the number to format
 	 */
 	public String format(int n) {
-		return ""; // FIX ME
+        return String.format("%d", n);
 	}
 
 }

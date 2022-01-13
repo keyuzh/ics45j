@@ -1,5 +1,7 @@
 package labs.lab5;
 
+import java.math.BigDecimal;
+
 /**
  * A coin with a monetary value.
  */
@@ -42,13 +44,16 @@ public class Coin implements Comparable {
 	
 	@Override
 	public String toString() {
-		return ""; // FIX ME 
+		return String.format("Value: %s, Name: %s",
+				new BigDecimal(Double.toString(value)).stripTrailingZeros().toPlainString(),
+				name);
 	}
 	
 	
 	@Override
 	public boolean equals(Object otherObject) {
-		return false; // FIX ME
+		Coin other = (Coin) otherObject;
+		return (this.getValue() == other.getValue() && this.getName().equals(other.getName()));
 	}
 
 
@@ -60,7 +65,14 @@ public class Coin implements Comparable {
 	 *         than, equal to, or greater than the specified coin
 	 */
 	public int compareTo(Object otherObject) {
-		return -1; // FIX ME
+		Coin other = (Coin) otherObject;
+        if (this.getValue() > other.getValue()) {
+			return 1;
+		}
+		else if (this.getValue() < other.getValue()) {
+			return -1;
+		}
+		return this.getName().compareTo(other.getName());
 	}
 
 }

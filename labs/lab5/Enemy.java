@@ -8,17 +8,18 @@ package labs.lab5;
 public abstract class Enemy implements Attackable {
 
 	// ADD YOUR INSTANCE VARIABLES HERE
+	private int health;
 
 	/**
 	 * Constructs a new Enemy with health = 100
 	 */
 	public Enemy() {
-		// FILL IN
+		health = 100;
 	}
 
 
 	public int getHealth() {
-		return -1; // FIX ME
+        return health;
 	}
 
 
@@ -30,7 +31,7 @@ public abstract class Enemy implements Attackable {
 	 * @param health the new health
 	 */
 	public void setHealth(int health) {
-		// FILL IN
+		this.health = Math.min(100, Math.max(0, health));
 	}
 
 }

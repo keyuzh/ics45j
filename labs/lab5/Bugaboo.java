@@ -8,6 +8,7 @@ package labs.lab5;
 public class Bugaboo extends Enemy {
 
 	// ADD YOUR INSTANCE VARIABLES HERE
+	private double strength;
 
 	/**
 	 * Constructs a new Bugaboo with the given strength
@@ -15,12 +16,13 @@ public class Bugaboo extends Enemy {
 	 * @param strength
 	 */
 	public Bugaboo(double strength) {
-		// FILL IN
+		super();
+        this.strength = strength;
 	}
 
 
 	public double getStrength() {
-		return -1.0; // FIX ME
+        return strength;
 	}
 
 
@@ -32,7 +34,8 @@ public class Bugaboo extends Enemy {
 	 *         this Bugaboo)
 	 */
 	public int attack() {
-		return -1; // FIX ME
+		strength *= 0.75;
+        return 0;
 	}
 
 
@@ -40,7 +43,7 @@ public class Bugaboo extends Enemy {
 	 * increases strength by 15%
 	 */
 	public void advanceTime() {
-		// FILL IN
+        strength *= 1.15;
 	}
 
 }

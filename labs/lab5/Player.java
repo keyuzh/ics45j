@@ -7,6 +7,8 @@ package labs.lab5;
 public class Player {
 
 	// ADD YOUR INSTANCE VARIABLES HERE
+	private String name;
+	private int strengthPoints, ammo;
 
 	/**
 	 * Constructs a new Player with the given name, 0 strength points, and 0 ammo
@@ -14,22 +16,24 @@ public class Player {
 	 * @param name name of the player
 	 */
 	public Player(String name) {
-		// FILL IN
+        this.name = name;
+		strengthPoints = 0;
+		ammo = 0;
 	}
 
 
 	public String getName() {
-		return ""; // FIX ME
+        return name;
 	}
 
 
 	public int getStrengthPoints() {
-		return -1; // FIX ME
+        return strengthPoints;
 	}
 
 
 	public int getAmmo() {
-		return -1; // FIX ME
+        return ammo;
 	}
 
 
@@ -37,7 +41,8 @@ public class Player {
 	 * If the item is a PowerUp: Collects the given PowerUp if it's not already
 	 * collected, and increments the player's strength points by the number of
 	 * points the PowerUp is worth
-	 * 
+	 *
+	 * // TODO: what if player doesn't have enough strength points, do we collect or not?
 	 * If the item is Ammo: Collects the given ammo if it's not already collected,
 	 * and if the player has enough strength points (each pound of ammo requires 10
 	 * strength points); adds to the player's ammo the number of items in the ammo
@@ -47,7 +52,15 @@ public class Player {
 	 * @return whether or not the item was collected
 	 */
 	public boolean collectItem(Collectable c) {
-		return false; // FIX ME
+        if ((c instanceof PowerUp) && (!c.isCollected())) {
+            strengthPoints += c.collect();
+            return true;
+		}
+		else if ((c instanceof Ammo) && (!c.isCollected()) && (getStrengthPoints() > 10.0 * ((Ammo) c).getWeight())) {
+            ammo += c.collect();
+            return true;
+		}
+		return false;
 	}
 
 
@@ -60,7 +73,12 @@ public class Player {
 	 * @return whether or not the Enemy was attacked
 	 */
 	public boolean attackEnemy(Enemy enemy) {
-		return false; // FIX ME
+        if (ammo > 0) {
+			strengthPoints += enemy.attack();
+			ammo--;
+			return true;
+		}
+		return false;
 	}
 
 }

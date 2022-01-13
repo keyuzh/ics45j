@@ -12,7 +12,13 @@ public class StudentFinder {
 	 * @return first Student
 	 */
 	public static Student firstStudent(Student[] students) {
-		return null; // FIX ME
+		Student first = students[0];
+		for (Student s: students) {
+            if (s.compareTo(first) < 0) {
+				first = s;
+			}
+		}
+		return first;
 	}
 
 
@@ -23,7 +29,13 @@ public class StudentFinder {
 	 * @return last Student
 	 */
 	public static Student lastStudent(Student[] students) {
-		return null; // FIX ME
+		Student last = students[0];
+		for (Student s: students) {
+			if (s.compareTo(last) > 0) {
+				last = s;
+			}
+		}
+		return last;
 	}
 
 }

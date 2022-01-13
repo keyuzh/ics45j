@@ -8,6 +8,7 @@ package labs.lab5;
 public abstract class Ammo implements Collectable {
 
 	// ADD YOUR INSTANCE VARIABLES HERE
+	private double weight;
 
 	/**
 	 * constructs a new Ammo with the given weight
@@ -15,17 +16,17 @@ public abstract class Ammo implements Collectable {
 	 * @param weight weight of ammo (in pounds)
 	 */
 	public Ammo(double weight) {
-		// FILL IN
+        this.weight = weight;
 	}
 
 
 	public double getWeight() {
-		return -1.0; // FIX ME
+        return weight;
 	}
 
 
 	public void setWeight(double weight) {
-		// FILL IN
+        this.weight = weight;
 	}
 
 

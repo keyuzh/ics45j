@@ -7,6 +7,7 @@ package labs.lab5;
 public abstract class PowerUp implements Collectable {
 
 	// ADD YOUR INSTANCE VARIABLES HERE
+	private int initialPointValue;
 
 	/**
 	 * Constructs a new PowerUp with the given initial pointValue
@@ -14,12 +15,12 @@ public abstract class PowerUp implements Collectable {
 	 * @param initialPointValue
 	 */
 	public PowerUp(int initialPointValue) {
-		// FILL IN
+        this.initialPointValue = initialPointValue;
 	}
 
 
 	public int getInitialPointValue() {
-		return -1; // FIX ME
+        return initialPointValue;
 	}
 
 }

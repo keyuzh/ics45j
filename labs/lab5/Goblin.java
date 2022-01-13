@@ -8,17 +8,19 @@ package labs.lab5;
 public class Goblin extends Enemy {
 
 	// ADD YOUR INSTANCE VARIABLES HERE
+	private String color;
 
 	/**
 	 * Constructs a new Goblin with color purple
 	 */
 	public Goblin() {
-		// FILL IN
+		super();
+        color = "purple";
 	}
 
 
 	public String getColor() {
-		return ""; // FIX ME
+		return color;
 	}
 
 
@@ -31,7 +33,9 @@ public class Goblin extends Enemy {
 	 *         this Goblin)
 	 */
 	public int attack() {
-		return -1; // FIX ME
+		color = "red";
+		setHealth(getHealth()-50);
+        return 50;
 	}
 
 
@@ -41,7 +45,12 @@ public class Goblin extends Enemy {
 	 * Goblin is red (from a stomp), starts the cycle over again with purple
 	 */
 	public void advanceTime() {
-		// FILL IN
+        setHealth(getHealth()-20);
+		switch (getColor()) {
+			case "red", "black" -> color = "purple";
+			case "purple" -> color = "orange";
+			case "orange" -> color = "black";
+		}
 	}
 
 }

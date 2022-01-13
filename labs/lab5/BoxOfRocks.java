@@ -9,6 +9,7 @@ package labs.lab5;
 public class BoxOfRocks extends Ammo {
 
 	// ADD YOUR INSTANCE VARIABLES HERE
+	private boolean hollow, collected;
 
 	/**
 	 * Constructs a new BoxOfRocks with: 1) the given weight; 2) the given hollow
@@ -18,7 +19,9 @@ public class BoxOfRocks extends Ammo {
 	 * @param hollow whether or not the rocks are hollow
 	 */
 	public BoxOfRocks(double weight, boolean hollow) {
-		super(-1.0); // FIX ME
+		super(weight);
+		this.hollow = hollow;
+		this.collected = false;
 	}
 
 
@@ -28,7 +31,7 @@ public class BoxOfRocks extends Ammo {
 	 * @return whether or not this item has been collected
 	 */
 	public boolean isCollected() {
-		return false; // FIX ME
+        return collected;
 	}
 
 
@@ -46,7 +49,11 @@ public class BoxOfRocks extends Ammo {
 	 * @return the number of rocks in the box
 	 */
 	public int collect() {
-		return -1; // FIX ME
+        if (!collected) {
+			collected = true;
+			return getNumAmmo();
+		}
+		return 0;
 	}
 
 
@@ -56,7 +63,9 @@ public class BoxOfRocks extends Ammo {
 	 * collected, there is no change.
 	 */
 	public void advanceTime() {
-		// FILL IN
+        if (!collected) {
+			setWeight(getWeight() * 0.95);
+		}
 	}
 
 
@@ -66,7 +75,12 @@ public class BoxOfRocks extends Ammo {
 	 * @return the number of ammo (how many attacks can come from this Ammo)
 	 */
 	public int getNumAmmo() {
-		return -1; // FIX ME
+		if (hollow) {
+			return Math.toIntExact(Math.round(getWeight() / 0.25));
+		}
+		else {
+			return Math.toIntExact(Math.round(getWeight() / 0.5));
+		}
 	}
 
 }

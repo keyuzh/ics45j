@@ -8,6 +8,7 @@ package labs.lab5;
 public class Clown extends Enemy {
 
 	// ADD YOUR INSTANCE VARIABLES HERE
+	private boolean weapon;
 
 	/**
 	 * Constructs a new Clown with the given weapon status
@@ -15,12 +16,13 @@ public class Clown extends Enemy {
 	 * @param weapon status
 	 */
 	public Clown(boolean weapon) {
-		// FILL IN
+		super();
+        this.weapon = weapon;
 	}
 
 
 	public boolean hasWeapon() {
-		return false; // FIX ME
+        return weapon;
 	}
 
 
@@ -35,7 +37,12 @@ public class Clown extends Enemy {
 	 * @return -25 if the clown has a weapon, 25 otherwise
 	 */
 	public int attack() {
-		return -1; // FIX ME
+        if (weapon) {
+			setHealth(getHealth()-5);
+			return -25;
+		}
+		setHealth(getHealth()-20);
+		return 25;
 	}
 
 
@@ -43,7 +50,8 @@ public class Clown extends Enemy {
 	 * 1) Decrements this Clown's health by 1; 2) Toggles the presence of a weapon
 	 */
 	public void advanceTime() {
-		// FILL IN
+        setHealth(getHealth()-1);
+		weapon = !weapon;
 	}
 
 }

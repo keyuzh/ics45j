@@ -8,6 +8,7 @@ package labs.lab5;
 public class Demogorgon extends Enemy {
 
 	// ADD YOUR INSTANCE VARIABLES HERE
+	private double weight;
 
 	/**
 	 * Constructs a new Demogorgon with the given weight
@@ -15,12 +16,13 @@ public class Demogorgon extends Enemy {
 	 * @param weight
 	 */
 	public Demogorgon(double weight) {
-		// FILL IN
+		super();
+        this.weight = weight;
 	}
 
 
 	public double getWeight() {
-		return -1.0; // FIX ME
+        return weight;
 	}
 
 
@@ -33,7 +35,9 @@ public class Demogorgon extends Enemy {
 	 *         this Demogorgon)
 	 */
 	public int attack() {
-		return -1; // FIX ME
+        weight *= 0.9;
+		setHealth(getHealth()-15);
+		return 0;
 	}
 
 
@@ -42,7 +46,8 @@ public class Demogorgon extends Enemy {
 	 * health by 10
 	 */
 	public void advanceTime() {
-		// FILL IN
+        weight *= 1.05;
+		setHealth(getHealth()+10);
 	}
 
 }

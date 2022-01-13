@@ -8,6 +8,8 @@ package labs.lab5;
 public class BagOfGems extends PowerUp {
 
 	// ADD YOUR INSTANCE VARIABLES HERE
+	private int numGems;
+	private boolean collected;
 
 	/**
 	 * Constructs a new BagOfGems with: 1) its initial point value equal to 5 times
@@ -17,7 +19,9 @@ public class BagOfGems extends PowerUp {
 	 * @param numGems number of gems in this BagOfGems
 	 */
 	public BagOfGems(int numGems) {
-		super(-1); // FIX ME
+		super(numGems * 5);
+		this.numGems = numGems;
+		collected = false;
 	}
 
 
@@ -27,7 +31,7 @@ public class BagOfGems extends PowerUp {
 	 * @return the number of gems in this BagOfGems
 	 */
 	public int getNumGems() {
-		return -1; // FIX ME
+        return numGems;
 	}
 
 
@@ -35,7 +39,7 @@ public class BagOfGems extends PowerUp {
 	 * Returns whether or not this item has been collected
 	 */
 	public boolean isCollected() {
-		return false; // FIX ME
+        return collected;
 	}
 
 
@@ -46,7 +50,11 @@ public class BagOfGems extends PowerUp {
 	 * If it is already collected, returns 0.
 	 */
 	public int collect() {
-		return -1; // FIX ME
+        if (!collected) {
+			collected = true;
+			return numGems * 5;
+		}
+		return 0;
 	}
 
 
@@ -56,6 +64,8 @@ public class BagOfGems extends PowerUp {
 	 * collected, there is no change.
 	 */
 	public void advanceTime() {
-		// FILL IN
+        if (!collected) {
+			numGems++;
+		}
 	}
 }
