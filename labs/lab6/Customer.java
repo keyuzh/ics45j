@@ -1,11 +1,16 @@
 package labs.lab6;
 
+import java.math.BigDecimal;
+
 /**
  * A customer that is represented by a name, amount spent, and type
  */
 public class Customer {
 
 	// ADD YOUR INSTANCE VARIABLES HERE
+	private String name;
+	private BigDecimal amountSpent;
+	private CustomerType type;
 
 	public static enum CustomerType {
 		CORPORATE, PERSONAL
@@ -17,7 +22,9 @@ public class Customer {
 	 * If amountSpent < 0, sets it to 0
 	 */
 	public Customer(String name, double amountSpent, CustomerType custType) {
-		// FIL IN
+		this.name = name;
+		this.amountSpent = (BigDecimal.ZERO).max(BigDecimal.valueOf(amountSpent));
+		this.type = custType;
 	}
 
 
@@ -27,7 +34,7 @@ public class Customer {
 	 * @return the name of the customer
 	 */
 	public String getName() {
-		return ""; // FIX ME
+		return name;
 	}
 
 
@@ -37,7 +44,7 @@ public class Customer {
 	 * @return the amount spent by the customer
 	 */
 	public double getAmountSpent() {
-		return -1.0; // FIX ME
+		return amountSpent.doubleValue();
 	}
 
 
@@ -49,7 +56,7 @@ public class Customer {
 	 * @param amountSpent the new amount spent
 	 */
 	public void setAmountSpent(double amountSpent) {
-		// FILL IN
+		this.amountSpent = (BigDecimal.ZERO).max(BigDecimal.valueOf(amountSpent));
 	}
 
 
@@ -59,7 +66,7 @@ public class Customer {
 	 * @return the customer type of the customer
 	 */
 	public CustomerType getCustomerType() {
-		return CustomerType.CORPORATE; // FIX ME
+		return type;
 	}
 
 
@@ -69,7 +76,7 @@ public class Customer {
 	 * @param custType the new customer type
 	 */
 	public void setCustomerType(CustomerType custType) {
-		// FILL IN
+		this.type = custType;
 	}
 
 
@@ -79,7 +86,7 @@ public class Customer {
 	 */
 	@Override
 	public String toString() {
-		return ""; // FIX ME
+		return String.format("%s, %s, %s", name, amountSpent.toString(), type.toString());
 	}
 
 
@@ -89,7 +96,10 @@ public class Customer {
 	 */
 	@Override
 	public boolean equals(Object otherObj) {
-		return false; // FIX ME
+		Customer other = (Customer) otherObj;
+		return (this.name.equals(other.name)
+				&& amountSpent.compareTo(other.amountSpent) == 0
+				&& type.equals(other.type));
 	}
 
 }

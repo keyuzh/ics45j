@@ -20,7 +20,10 @@ public class BankAccount {
 	 * 
 	 * @param initialBalance the initial balance
 	 */
-	public BankAccount(double initialBalance) {
+	public BankAccount(double initialBalance) throws IllegalArgumentException {
+		if (initialBalance < 0.0) {
+			throw new IllegalArgumentException("Cannot enter negative initial balance");
+		}
 		balance = initialBalance;
 	}
 
@@ -31,6 +34,9 @@ public class BankAccount {
 	 * @param amount the amount to deposit
 	 */
 	public void deposit(double amount) {
+		if (amount < 0.0) {
+			throw new IllegalArgumentException("Cannot deposit negative amount");
+		}
 		double newBalance = balance + amount;
 		balance = newBalance;
 	}
@@ -42,6 +48,9 @@ public class BankAccount {
 	 * @param amount the amount to withdraw
 	 */
 	public void withdraw(double amount) {
+		if (amount < 0.0 || amount > balance) {
+			throw new IllegalArgumentException("Cannot withdraw this amount");
+		}
 		double newBalance = balance - amount;
 		balance = newBalance;
 	}

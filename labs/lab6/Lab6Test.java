@@ -1,13 +1,16 @@
 package labs.lab6;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 class Lab6Test {
 
@@ -19,7 +22,7 @@ class Lab6Test {
 		// test sortFile:
 		
 		// alice.txt:
-		String testFileName = "res/alice.txt";
+		String testFileName = "labs/lab6/res/alice.txt";
 		Files.sortFile(testFileName);
 		List<String> linesList = Arrays.asList(
 				"'Dinah'll I again. me miss much should talking think!' to-night, very",
@@ -30,7 +33,7 @@ class Lab6Test {
 		assertLinesMatch(linesList, java.nio.file.Files.readAllLines(new File(testFileName).toPath()));
 		
 		// alice2.txt:
-		testFileName = "res/alice2.txt";
+		testFileName = "labs/lab6/res/alice2.txt";
 		Files.sortFile(testFileName);
 		linesList = Arrays.asList(
 				"'Dinah'll I again. me miss much should talking think!' to-night, very",
@@ -41,7 +44,7 @@ class Lab6Test {
 		assertLinesMatch(linesList, java.nio.file.Files.readAllLines(new File(testFileName).toPath()));
 		
 		// alice3.txt:
-		testFileName = "res/alice3.txt";
+		testFileName = "labs/lab6/res/alice3.txt";
 		Files.sortFile(testFileName);
 		linesList = Arrays.asList(
 				"2021. Alice Darkness, END It Light, THE The age age belief, best despair. epoch epoch foolishness, has hope, incredulity, is it it it it it it it it it left long of of of of of of of of of of season season since spring the the the the the the the the the the times, times, was was was was was was was was was was winter wisdom, wonderland. worst year"
@@ -49,7 +52,7 @@ class Lab6Test {
 		assertLinesMatch(linesList, java.nio.file.Files.readAllLines(new File(testFileName).toPath()));
 		
 		// alice4.txt:
-		testFileName = "res/alice4.txt";
+		testFileName = "labs/lab6/res/alice4.txt";
 		Files.sortFile(testFileName);
 		linesList = Arrays.asList(
 				"2021. Alice The has is left long since wonderland. year",
@@ -68,7 +71,7 @@ class Lab6Test {
 		assertLinesMatch(linesList, java.nio.file.Files.readAllLines(new File(testFileName).toPath()));
 		
 		// babynames.txt:
-		testFileName = "res/babynames.txt";
+		testFileName = "labs/lab6/res/babynames.txt";
 		Files.sortFile(testFileName);
 		linesList = Arrays.asList(
 				"0.8609 1.2681 10 160312 260365 Joseph Megan",
@@ -85,13 +88,13 @@ class Lab6Test {
 		assertLinesMatch(linesList, java.nio.file.Files.readAllLines(new File(testFileName).toPath()));
 		
 		// blank.txt:
-		testFileName = "res/blank.txt";
+		testFileName = "labs/lab6/res/blank.txt";
 		Files.sortFile(testFileName);
 		linesList = new ArrayList<String>();
 		assertLinesMatch(linesList, java.nio.file.Files.readAllLines(new File(testFileName).toPath()));
 		
 		// numbers.txt:
-		testFileName = "res/numbers.txt";
+		testFileName = "labs/lab6/res/numbers.txt";
 		Files.sortFile(testFileName);
 		linesList = Arrays.asList(
 				"-0.000",
@@ -105,7 +108,7 @@ class Lab6Test {
 		assertLinesMatch(linesList, java.nio.file.Files.readAllLines(new File(testFileName).toPath()));
 		
 		// test exception message is printed out:
-		String nonExistentFileName = "res/nothing.txt";
+		String nonExistentFileName = "labs/lab6/res/nothing.txt";
 		ByteArrayOutputStream output = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(output));
 		
@@ -118,7 +121,7 @@ class Lab6Test {
 		// test spellDigits:
 		
 		// aliceR.txt:
-		testFileName = "res/aliceR.txt";
+		testFileName = "labs/lab6/res/aliceR.txt";
 		Files.spellDigits(testFileName);
 		linesList = Arrays.asList(
 				"",
@@ -135,7 +138,7 @@ class Lab6Test {
 		assertLinesMatch(linesList, java.nio.file.Files.readAllLines(new File(testFileName).toPath()));
 
 		// alice2R.txt:
-		testFileName = "res/alice2R.txt";
+		testFileName = "labs/lab6/res/alice2R.txt";
 		Files.spellDigits(testFileName);
 		linesList = Arrays.asList(
 				"",
@@ -150,17 +153,17 @@ class Lab6Test {
 				""
 				);
 		assertLinesMatch(linesList, java.nio.file.Files.readAllLines(new File(testFileName).toPath()));
-		
+
 		// alice3R.txt:
-		testFileName = "res/alice3R.txt";
+		testFileName = "labs/lab6/res/alice3R.txt";
 		Files.spellDigits(testFileName);
 		linesList = Arrays.asList(
 				"The year is TWOZEROTWOONE. Alice has long since left wonderland. It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair. THE END"
 				);
 		assertLinesMatch(linesList, java.nio.file.Files.readAllLines(new File(testFileName).toPath()));
-		
+
 		// alice4R.txt:
-		testFileName = "res/alice4R.txt";
+		testFileName = "labs/lab6/res/alice4R.txt";
 		Files.spellDigits(testFileName);
 		linesList = Arrays.asList(
 				"The year is TWOZEROTWOONE. Alice has long since left wonderland.",
@@ -179,9 +182,9 @@ class Lab6Test {
 				"THE END"
 				);
 		assertLinesMatch(linesList, java.nio.file.Files.readAllLines(new File(testFileName).toPath()));
-		
+
 		// babynamesR.txt:
-		testFileName = "res/babynamesR.txt";
+		testFileName = "labs/lab6/res/babynamesR.txt";
 		Files.spellDigits(testFileName);
 		linesList = Arrays.asList(
 				"ONE  Michael  FOURSIXTWOZEROEIGHTFIVE  TWO.TWOFIVEZEROSIX  Jessica  THREEZEROTWONINESIXTWO  ONE.FIVEFOURTHREESIX",
@@ -196,15 +199,15 @@ class Lab6Test {
 				"ONEZERO  Joseph  TWOSIXZEROTHREESIXFIVE  ONE.TWOSIXEIGHTONE  Megan  ONESIXZEROTHREEONETWO  ZERO.EIGHTSIXZERONINE"
 				);
 		assertLinesMatch(linesList, java.nio.file.Files.readAllLines(new File(testFileName).toPath()));
-		
+
 		// blank.txt:
-		testFileName = "res/blankR.txt";
+		testFileName = "labs/lab6/res/blankR.txt";
 		Files.spellDigits(testFileName);
 		linesList = new ArrayList<String>();
 		assertLinesMatch(linesList, java.nio.file.Files.readAllLines(new File(testFileName).toPath()));
-		
+
 		// numbers.txt:
-		testFileName = "res/numbersR.txt";
+		testFileName = "labs/lab6/res/numbersR.txt";
 		Files.spellDigits(testFileName);
 		linesList = Arrays.asList(
 				"-ONENINENINEEIGHT.THREETHREETWO",
@@ -216,13 +219,13 @@ class Lab6Test {
 				"EIGHTTHREENINETWOSEVENFOURTHREE, ONENINEEIGHT, -NINENINEEIGHT, -NINETWOEIGHTTHREE.FOURFIVETHREEFOUR"
 				);
 		assertLinesMatch(linesList, java.nio.file.Files.readAllLines(new File(testFileName).toPath()));
-		
+
 		// test exception message is printed out:
 		output = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(output));
-		
+
 		Files.spellDigits(nonExistentFileName);
-		
+
 		result = output.toString();
 		assertEquals("File: " + nonExistentFileName + " not found", result);
 	}
@@ -282,37 +285,37 @@ class Lab6Test {
 	@Test
 	void problem4() {
 		assertEquals("End of day total is properly balanced.",
-				BalanceTransactions.balance(0, 55.55, "res/transactions1.txt"));
+				BalanceTransactions.balance(0, 55.55, "labs/lab6/res/transactions1.txt"));
 
 		assertEquals("End of day total is properly balanced.",
-				BalanceTransactions.balance(10.05, 65.60, "res/transactions1.txt"));
+				BalanceTransactions.balance(10.05, 65.60, "labs/lab6/res/transactions1.txt"));
 
 		assertEquals("End of day total is not balanced.",
-				BalanceTransactions.balance(25, 55.55, "res/transactions1.txt"));
+				BalanceTransactions.balance(25, 55.55, "labs/lab6/res/transactions1.txt"));
 
 		assertEquals("End of day total is properly balanced.",
-				BalanceTransactions.balance(0, 0, "res/transactionsBlank.txt"));
+				BalanceTransactions.balance(0, 0, "labs/lab6/res/transactionsBlank.txt"));
 
 		assertEquals("End of day total is not balanced.",
-				BalanceTransactions.balance(0, 55.55, "res/transactionsBlank.txt"));
+				BalanceTransactions.balance(0, 55.55, "labs/lab6/res/transactionsBlank.txt"));
 
 		assertEquals("End of day total is properly balanced.",
-				BalanceTransactions.balance(0, -176.62, "res/transactions2.txt"));
+				BalanceTransactions.balance(0, -176.62, "labs/lab6/res/transactions2.txt"));
 
 		assertEquals("End of day total is properly balanced.",
-				BalanceTransactions.balance(200, 23.38, "res/transactions2.txt"));
+				BalanceTransactions.balance(200, 23.38, "labs/lab6/res/transactions2.txt"));
 
 		assertEquals("End of day total is not balanced.",
-				BalanceTransactions.balance(100, 23.38, "res/transactions2.txt"));
+				BalanceTransactions.balance(100, 23.38, "labs/lab6/res/transactions2.txt"));
 
 		assertEquals("End of day total is properly balanced.",
-				BalanceTransactions.balance(0, 190.79, "res/transactions3.txt"));
+				BalanceTransactions.balance(0, 190.79, "labs/lab6/res/transactions3.txt"));
 
 		assertEquals("End of day total is properly balanced.",
-				BalanceTransactions.balance(10, 200.79, "res/transactions3.txt"));
+				BalanceTransactions.balance(10, 200.79, "labs/lab6/res/transactions3.txt"));
 
 		assertEquals("End of day total is not balanced.",
-				BalanceTransactions.balance(100, 190.79, "res/transactions3.txt"));
+				BalanceTransactions.balance(100, 190.79, "labs/lab6/res/transactions3.txt"));
 
 		// test exception message is printed out:
 		String nonExistentFileName = "doesnotexist.txt";
@@ -328,7 +331,7 @@ class Lab6Test {
 	void problem5() {
 		
 		// customers1.txt:
-		CustomerData data = new CustomerData("res/customers1.txt");
+		CustomerData data = new CustomerData("labs/lab6/res/customers1.txt");
 		
 		List<Customer> expected = Arrays.asList(
 				new Customer("DoggySpa", 99.5, Customer.CustomerType.CORPORATE)
@@ -347,7 +350,7 @@ class Lab6Test {
 		
 
 		// customers2.txt:
-		data = new CustomerData("res/customers2.txt");
+		data = new CustomerData("labs/lab6/res/customers2.txt");
 		
 		expected = Arrays.asList(
 				new Customer("Robert", 99.5, Customer.CustomerType.PERSONAL),
@@ -368,7 +371,7 @@ class Lab6Test {
 		
 		
 		// customers3.txt:
-		data = new CustomerData("res/customers3.txt");
+		data = new CustomerData("labs/lab6/res/customers3.txt");
 		
 		expected = Arrays.asList(
 				new Customer("Robert", 99.5, Customer.CustomerType.PERSONAL),
@@ -395,7 +398,7 @@ class Lab6Test {
 
 		
 		// customers4.txt:
-		data = new CustomerData("res/customers4.txt");
+		data = new CustomerData("labs/lab6/res/customers4.txt");
 		
 		expected = Arrays.asList(
 				new Customer("DoggyDayCare", 23.67, Customer.CustomerType.CORPORATE)
@@ -415,7 +418,7 @@ class Lab6Test {
 		
 		
 		// customers5.txt:
-		data = new CustomerData("res/customers5.txt");
+		data = new CustomerData("labs/lab6/res/customers5.txt");
 		
 		expected = Arrays.asList(
 				new Customer("Robert", 0.0, Customer.CustomerType.PERSONAL),
@@ -442,7 +445,7 @@ class Lab6Test {
 		
 		
 		// customers6.txt:
-		data = new CustomerData("res/customers6.txt");
+		data = new CustomerData("labs/lab6/res/customers6.txt");
 		
 		expected = Arrays.asList(
 				new Customer("Robert", 99.5, Customer.CustomerType.PERSONAL)
@@ -464,7 +467,7 @@ class Lab6Test {
 		
 		
 		// customers7.txt:
-		data = new CustomerData("res/customers7.txt");
+		data = new CustomerData("labs/lab6/res/customers7.txt");
 		
 		expected = Arrays.asList(
 				new Customer("Dogazon", 101.35, Customer.CustomerType.PERSONAL)
@@ -486,7 +489,7 @@ class Lab6Test {
 		
 		
 		// customers8.txt:
-		data = new CustomerData("res/customers8.txt");
+		data = new CustomerData("labs/lab6/res/customers8.txt");
 		
 		expected = Arrays.asList(
 				new Customer("Dogazon", 101.35, Customer.CustomerType.PERSONAL)
@@ -506,7 +509,7 @@ class Lab6Test {
 		
 		
 		// customers9.txt:
-		data = new CustomerData("res/customers9.txt");
+		data = new CustomerData("labs/lab6/res/customers9.txt");
 		
 		expected = Arrays.asList(
 				new Customer("Dogazon", 101.35, Customer.CustomerType.CORPORATE)
@@ -526,7 +529,7 @@ class Lab6Test {
 		
 
 		// blank.txt:
-		data = new CustomerData("res/blank.txt");
+		data = new CustomerData("labs/lab6/res/blank.txt");
 		
 		actual = data.getBestCustomer();
 		assertTrue(expected.size() == actual.size() && expected.containsAll(actual) && actual.containsAll(expected));
