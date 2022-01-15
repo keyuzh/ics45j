@@ -1,17 +1,20 @@
 package labs.lab6;
 
+import java.math.BigDecimal;
+
 /**
  * A box of coins.
  */
 public class CoinBox {
 
 	// ADD YOUR INSTANCE VARIABLES HERE
+	private BigDecimal value;
 
 	/**
 	 * Constructs an empty CoinBox object.
 	 */
 	public CoinBox() {
-		// FILL IN
+		this.value = new BigDecimal(0);
 	}
 
 
@@ -21,7 +24,7 @@ public class CoinBox {
 	 * @param c the coin to add
 	 */
 	public void addCoin(Coin c) {
-		// FILL IN
+		value = value.add(BigDecimal.valueOf(c.getValue()));
 	}
 
 
@@ -31,7 +34,8 @@ public class CoinBox {
 	 * @param other the box of coins from which to add
 	 */
 	public void addCoins(CoinBox other) {
-		// FILL IN
+		this.value = this.value.add(other.value);
+		other.removeAllCoins();
 	}
 
 
@@ -41,7 +45,7 @@ public class CoinBox {
 	 * @return total the total value of all the coins
 	 */
 	public double getValue() {
-		return -1.0; // FIX ME
+		return value.doubleValue();
 	}
 
 
@@ -49,7 +53,7 @@ public class CoinBox {
 	 * Removes all the coins.
 	 */
 	public void removeAllCoins() {
-		// FILL IN
+		value = new BigDecimal(0);
 	}
 
 }

@@ -1,11 +1,15 @@
 package labs.lab6;
 
+import java.math.BigDecimal;
+
 /**
  * A product in a vending machine.
  */
 public class Product {
 
 	// ADD YOUR INSTANCE VARIABLES EHRE
+	private String description;
+	private BigDecimal price;
 
 	/**
 	 * Constructs a Product object
@@ -14,7 +18,8 @@ public class Product {
 	 * @param aPrice       the price of the product
 	 */
 	public Product(String aDescription, double aPrice) {
-		// FILL IN
+		description = aDescription;
+		price = BigDecimal.valueOf(aPrice);
 	}
 
 
@@ -24,7 +29,7 @@ public class Product {
 	 * @return the description
 	 */
 	public String getDescription() {
-		return ""; // FIX ME
+		return description;
 	}
 
 
@@ -34,7 +39,7 @@ public class Product {
 	 * @return the price
 	 */
 	public double getPrice() {
-		return -1.0; // FIX ME
+		return price.doubleValue();
 	}
 
 
@@ -46,7 +51,8 @@ public class Product {
 	 */
 	@Override
 	public boolean equals(Object other) {
-		return false; // FIX ME
+		Product o = (Product) other;
+		return (description.equals(o.getDescription()) && (price.compareTo(o.price) == 0));
 	}
 
 
@@ -57,7 +63,7 @@ public class Product {
 	 */
 	@Override
 	public String toString() {
-		return ""; // FIX ME
+		return String.format("%s @ $%.2f", description, price);
 	}
 
 }

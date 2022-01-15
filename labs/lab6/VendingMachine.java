@@ -1,6 +1,8 @@
 package labs.lab6;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -12,12 +14,16 @@ public class VendingMachine {
 	public CoinBox storedCoins; // the coins that have already been used to purchase a product
 	public CoinBox currentCoins; // the coins that have been inserted but have not yet been used to purchase a
 									// product
+	private HashMap<Product, Integer> quantities;
 
 	/**
 	 * Constructs a VendingMachine object with no products or coins
 	 */
 	public VendingMachine() {
-		// FILL IN
+		products = new ArrayList<>();
+		storedCoins = new CoinBox();
+		currentCoins = new CoinBox();
+		quantities = new HashMap<>();
 	}
 
 
@@ -27,7 +33,7 @@ public class VendingMachine {
 	 * @return a list of products in this machine
 	 */
 	public List<Product> getProductTypes() {
-		return new ArrayList<Product>(); // FIX ME
+		return products;
 	}
 
 
@@ -38,7 +44,8 @@ public class VendingMachine {
 	 * @param quantity the quantity
 	 */
 	public void addProduct(Product p, int quantity) {
-		// FILL IN
+		products.add(p);
+		quantities.put(p, quantities.getOrDefault(p, 0) + quantity);
 	}
 
 
@@ -51,7 +58,8 @@ public class VendingMachine {
 	 *         buy a product
 	 */
 	public double addCoin(Coin c) {
-		return -1.0; // FIX ME
+		currentCoins.addCoin(c);
+		return currentCoins.getValue();
 	}
 
 
@@ -66,7 +74,22 @@ public class VendingMachine {
 	 *         "No such product" if the product doesn't exist in the machine
 	 */
 	public String buyProduct(Product p) {
-		return ""; // FIX ME
+		if (!products.contains(p)) {
+			return "No such product";
+		}
+		BigDecimal productPrice = BigDecimal.valueOf(p.getPrice());
+		BigDecimal inserted = BigDecimal.valueOf(currentCoins.getValue());
+		if (productPrice.compareTo(inserted) > 0) {
+			return "Insufficient money";
+		}
+		storedCoins.addCoins(currentCoins);
+		quantities.put(p, quantities.get(p)-1);
+		//TODO: try write some tests that buy/insert products after they have been sold out once
+		if (quantities.get(p) == 0) {
+			products.remove(p);
+			quantities.remove(p);
+		}
+		return "OK";
 	}
 
 
@@ -76,7 +99,9 @@ public class VendingMachine {
 	 * @return the amount of money removed
 	 */
 	public double removeStoredMoney() {
-		return -1.0; // FIX ME
+		double amount = storedCoins.getValue();
+		storedCoins.removeAllCoins();
+		return amount;
 	}
 
 }

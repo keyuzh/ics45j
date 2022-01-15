@@ -601,8 +601,8 @@ class Lab6Test {
 		assertEquals(1.3, box2.getValue(), EPSILON);
 		box2.removeAllCoins();
 		assertEquals(0, box2.getValue(), EPSILON);
-		
-		
+
+
 		// VendingMachine:
 		VendingMachine machine = new VendingMachine();
 		List<Product> expectedProducts = Arrays.asList();
@@ -625,7 +625,7 @@ class Lab6Test {
 		assertEquals(1.0, machine.addCoin(Coin.DOLLAR), EPSILON);
 		assertEquals("OK", machine.buyProduct(soda));
 		assertEquals(1.55, machine.removeStoredMoney(), EPSILON);
-		
+
 		machine = new VendingMachine();
 		Product gum = new Product("Gum", 0.45);
 		machine.addProduct(gum, 2);

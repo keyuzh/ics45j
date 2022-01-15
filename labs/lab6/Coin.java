@@ -1,11 +1,15 @@
 package labs.lab6;
 
+import java.math.BigDecimal;
+
 /**
  * A coin with a monetary value.
  */
 public class Coin {
 
 	// ADD YOUR INSTANCE VARIABLES HERE
+	private BigDecimal value;
+	private String name;
 
 	public static final Coin NICKEL = new Coin(.05, "nickel");
 	public static final Coin DIME = new Coin(.10, "dime");
@@ -19,7 +23,8 @@ public class Coin {
 	 * @param aName  the name of the coin
 	 */
 	public Coin(double aValue, String aName) {
-		// FILL IN
+		value = BigDecimal.valueOf(aValue);
+		name = aName;
 	}
 
 
@@ -29,7 +34,7 @@ public class Coin {
 	 * @return the value
 	 */
 	public double getValue() {
-		return -1.0; // FIX ME
+		return value.doubleValue();
 	}
 
 
@@ -39,7 +44,7 @@ public class Coin {
 	 * @return the name
 	 */
 	public String getName() {
-		return ""; // FIX ME
+		return name;
 	}
 
 
@@ -49,7 +54,7 @@ public class Coin {
 	 */
 	@Override
 	public String toString() {
-		return ""; // FIX ME
+		return String.format("%s @ $%.2f", name, value);
 	}
 
 }
