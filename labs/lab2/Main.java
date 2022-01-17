@@ -1,7 +1,6 @@
 package labs.lab2;
 
 import java.util.Arrays;
-import java.util.Objects;
 import java.util.Scanner;
 
 class Main {
@@ -149,7 +148,6 @@ class Main {
 			System.out.print("Possible hearing damage");
 		}
 		else {
-
 			System.out.print("Threshold of pain");
 		}
 	}

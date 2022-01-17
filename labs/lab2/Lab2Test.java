@@ -1,6 +1,6 @@
 package labs.lab2;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -8,7 +8,7 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 class Lab2Test {
 
@@ -70,6 +70,20 @@ class Lab2Test {
 		Main.problem2_formatPhoneNumber(new Scanner(System.in));
 		result = output.toString();
 		assertEquals("Please enter a ten-digit phone number: (523) 303-9999", result);
+
+		// Test case 4
+		input = "9999999999\n";
+
+		in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+
+		output = new ByteArrayOutputStream();
+		System.setOut(new PrintStream(output));
+
+		Main.problem2_formatPhoneNumber(new Scanner(System.in));
+		result = output.toString();
+		assertEquals("Please enter a ten-digit phone number: (999) 999-9999", result);
+
 	}
 
 
@@ -145,6 +159,7 @@ class Lab2Test {
 		assertEquals(19, Main.problem6_playBlackjack(19, 1));
 		assertEquals(19, Main.problem6_playBlackjack(1, 19));
 		assertEquals(19, Main.problem6_playBlackjack(19, 220));
+		assertEquals(18, Main.problem6_playBlackjack(22, 18));
 	}
 	
 	

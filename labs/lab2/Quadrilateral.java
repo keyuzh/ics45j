@@ -38,40 +38,23 @@ public class Quadrilateral {
 	}
 
 	private double getSideLength(char s) {
-		switch (s) {
-			case 'a':
-				return Math.sqrt(Math.pow(ax - bx, 2) + Math.pow(ay - by, 2));
-			case 'b':
-				return Math.sqrt(Math.pow(cx - bx, 2) + Math.pow(cy - by, 2));
-			case 'c':
-				return Math.sqrt(Math.pow(cx - dx, 2) + Math.pow(cy - dy, 2));
-			case 'd':
-				return Math.sqrt(Math.pow(ax - dx, 2) + Math.pow(ay - dy, 2));
-			default:
-				return 0;
-		}
+		return switch (s) {
+			case 'a' -> Math.sqrt(Math.pow(ax - bx, 2) + Math.pow(ay - by, 2));
+			case 'b' -> Math.sqrt(Math.pow(cx - bx, 2) + Math.pow(cy - by, 2));
+			case 'c' -> Math.sqrt(Math.pow(cx - dx, 2) + Math.pow(cy - dy, 2));
+			case 'd' -> Math.sqrt(Math.pow(ax - dx, 2) + Math.pow(ay - dy, 2));
+			default -> 0;
+		};
 	}
 
 	private double[] getPoints(char s) {
-		double[] res;
-		switch (s) {
-			case 'a':
-			case 'e':
-				res = new double[] {ax, ay};
-				break;
-			case 'b':
-				res = new double[] {bx, by};
-				break;
-			case 'c':
-				res = new double[] {cx, cy};
-				break;
-			case 'd':
-				res = new double[] {dx, dy};
-				break;
-			default:
-				res = new double[] {0, 0};
-		}
-		return res;
+		return switch (s) {
+			case 'a', 'e' -> new double[]{ax, ay};
+			case 'b' -> new double[]{bx, by};
+			case 'c' -> new double[]{cx, cy};
+			case 'd' -> new double[]{dx, dy};
+			default -> new double[]{0, 0};
+		};
 	}
 
 	private static boolean eq(double a, double b) {
