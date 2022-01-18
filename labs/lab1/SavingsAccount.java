@@ -40,6 +40,7 @@ public class SavingsAccount {
 	 */
 	public void deposit(double amount) {
         balance += amount;
+		numTransactions++;
 	}
 
 
@@ -50,6 +51,7 @@ public class SavingsAccount {
 	 */
 	public void withdraw(double amount) {
         balance -= amount;
+		numTransactions++;
 	}
 
 
