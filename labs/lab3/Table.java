@@ -50,7 +50,7 @@ public class Table {
 	 * @return the average of the adjacent elements
 	 */
 	public double neighborAverage(int row, int column) {
-//		if (row < 0 || row >= nRows || column < 0 || column >= nCols) { return 0.0; }
+		if (row < 0 || row >= nRows || column < 0 || column >= nCols) { return 0.0; }
 		double sum = 0.0;
 		int count = 0;
 		for (int i = row-1; i <= row+1; i++) {
