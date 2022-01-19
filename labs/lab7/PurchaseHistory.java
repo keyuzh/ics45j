@@ -1,5 +1,6 @@
 package labs.lab7;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,9 +12,10 @@ import java.util.List;
 public class PurchaseHistory {
 
 	// ADD YOUR INSTANCE VARIABLES EHRE
+	List<Purchase> purchases;
 
 	public PurchaseHistory() {
-		// FILL IN
+		purchases = new ArrayList<>();
 	}
 
 
@@ -25,7 +27,7 @@ public class PurchaseHistory {
 	 * @param amount      amount of purchase
 	 */
 	public void addPurchase(LocalDate date, String description, double amount) {
-		// FILL IN
+		purchases.add(new Purchase(date, description, amount));
 	}
 
 
@@ -39,7 +41,9 @@ public class PurchaseHistory {
 	 * @return the number of purchases matching the parameters and therefore removed
 	 */
 	public int removePurchase(LocalDate date, String description, double amount) {
-		return -1; // FIX ME
+		int before = purchases.size();
+		purchases.removeIf((p) -> p.equals(new Purchase(date, description, amount)));
+		return before - purchases.size();
 	}
 
 
@@ -52,7 +56,14 @@ public class PurchaseHistory {
 	 * @return a list of purchases in the date range, in sorted order
 	 */
 	public List<Purchase> getPurchasesInDateRange(LocalDate start, LocalDate end) {
-		return new ArrayList<Purchase>(); // FIX ME
+		List<Purchase> res = new ArrayList<>();
+		for (Purchase p : purchases) {
+			if (!p.getDate().isBefore(start) && !p.getDate().isAfter(end)) {
+				res.add(p);
+			}
+		}
+		res.sort(Purchase::compareTo);
+		return res;
 	}
 
 
@@ -65,7 +76,13 @@ public class PurchaseHistory {
 	 * @return the total of purchases in the date range
 	 */
 	public double getPurchaseTotalInDateRange(LocalDate start, LocalDate end) {
-		return -1.0; // FIX ME
+		double total = 0.0;
+		for (Purchase p : purchases) {
+			if (!p.getDate().isBefore(start) && !p.getDate().isAfter(end)) {
+				total += p.getAmount();
+			}
+		}
+		return total;
 	}
 
 
@@ -77,7 +94,14 @@ public class PurchaseHistory {
 	 * @return a list of purchases matching the description, in sorted order
 	 */
 	public List<Purchase> getPurchasesMatchingDescription(String description) {
-		return new ArrayList<Purchase>(); // FIX ME
+		List<Purchase> res = new ArrayList<>();
+		for (Purchase p : purchases) {
+			if (p.getDescription().equals(description)) {
+				res.add(p);
+			}
+		}
+		res.sort(Purchase::compareTo);
+		return res;
 	}
 
 
@@ -89,7 +113,13 @@ public class PurchaseHistory {
 	 * @return the total of purchases that match the description
 	 */
 	public double getPurchaseTotalMatchingDescription(String description) {
-		return -1.0; // FIX ME
+		double total = 0.0;
+		for (Purchase p : purchases) {
+			if (p.getDescription().equals(description)) {
+				total += p.getAmount();
+			}
+		}
+		return total;
 	}
 
 
@@ -102,7 +132,14 @@ public class PurchaseHistory {
 	 * @return a list of purchases in the amount range, in sorted order
 	 */
 	public List<Purchase> getPurchasesInAmountRange(double min, double max) {
-		return new ArrayList<Purchase>(); // FIX ME
+		List<Purchase> res = new ArrayList<>();
+		for (Purchase p : purchases) {
+			if (p.amount.compareTo(BigDecimal.valueOf(min)) >= 0 && p.amount.compareTo(BigDecimal.valueOf(max)) <= 0) {
+				res.add(p);
+			}
+		}
+		res.sort(Purchase::compareTo);
+		return res;
 	}
 
 
@@ -115,7 +152,13 @@ public class PurchaseHistory {
 	 * @return the total of purchases in the amount range
 	 */
 	public double getPurchaseTotalInAmountRange(double min, double max) {
-		return -1.0; // FIX ME
+		double total = 0.0;
+		for (Purchase p : purchases) {
+			if (p.amount.compareTo(BigDecimal.valueOf(min)) >= 0 && p.amount.compareTo(BigDecimal.valueOf(max)) <= 0) {
+				total += p.getAmount();
+			}
+		}
+		return total;
 	}
 
 
@@ -129,7 +172,14 @@ public class PurchaseHistory {
 	 *         range
 	 */
 	public List<Purchase> getMaxPurchaseInDateRange(LocalDate start, LocalDate end) {
-		return new ArrayList<Purchase>(); // FIX ME
+		List<Purchase> inrange = getPurchasesInDateRange(start, end);
+		BigDecimal m = new BigDecimal(0);
+		for (Purchase p : inrange) {
+			m = m.max(p.amount);
+		}
+		BigDecimal finalM = m;
+		inrange.removeIf((x) -> x.amount.compareTo(finalM) < 0);
+		return inrange;
 	}
 
 
@@ -143,7 +193,16 @@ public class PurchaseHistory {
 	 *         range
 	 */
 	public List<Purchase> getMinPurchaseInDateRange(LocalDate start, LocalDate end) {
-		return new ArrayList<Purchase>(); // FIX ME
+		List<Purchase> inrange = getPurchasesInDateRange(start, end);
+		BigDecimal m = null;
+		for (Purchase p : inrange) {
+			if (m == null || m.compareTo(p.amount) > 0) {
+				m = p.amount;
+			}
+		}
+		BigDecimal finalM = m;
+		inrange.removeIf((x) -> x.amount.compareTo(finalM) > 0);
+		return inrange;
 	}
 
 
@@ -153,7 +212,12 @@ public class PurchaseHistory {
 	 */
 	@Override
 	public String toString() {
-		return ""; // FIX ME
+		purchases.sort(Purchase::compareTo);
+		StringBuilder sb = new StringBuilder();
+		for (Purchase p : purchases) {
+			sb.append(p.toString()).append(", ");
+		}
+		return sb.substring(0, sb.length()-2);
 	}
 
 }

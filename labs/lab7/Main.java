@@ -5,13 +5,17 @@ public class Main {
 	/**
 	 * Given a string, compute recursively a new string where all the lowercase 'x'
 	 * chars have been moved to the end of the string.
-	 * 
+	 *
 	 * @param str the string in which to move the x's
 	 * 
 	 * @return the string with all the x's moved to the end
 	 */
 	public static String problem1_moveXToEnd(String str) {
-		return ""; // FIX ME
+		int x = str.indexOf('x');
+		if (x == -1) {
+			return str;
+		}
+		return problem1_moveXToEnd(str.substring(0, x) + str.substring(x+1)) + 'x';
 	}
 
 
@@ -26,7 +30,11 @@ public class Main {
 	 *         strings overlapping
 	 */
 	public static int problem2_countSubs(String str, String sub) {
-		return -1; // FIX ME
+		int i = str.indexOf(sub);
+		if (i == -1) {
+			return 0;
+		}
+		return 1 + problem2_countSubs(str.substring(i+sub.length()), sub);
 	}
 
 
@@ -41,7 +49,11 @@ public class Main {
 	 *         it) appears in the string, however do
 	 */
 	public static int problem3_countHis(String str) {
-		return -1; // FIX ME
+		int i = str.indexOf("hi");
+		if (i == -1) {
+			return 0;
+		}
+		return ((i-1 < 0 || str.charAt(i-1) != 'x') ? 1 : 0) + problem3_countHis(str.substring(i+2));
 	}
 
 }

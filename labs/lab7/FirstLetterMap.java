@@ -7,9 +7,9 @@ package labs.lab7;
  * that same letter. 
 */
 
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.*;
 
 public class FirstLetterMap {
 
@@ -27,7 +27,24 @@ public class FirstLetterMap {
 	 * @param fileName name of the file on which to construct the map
 	 */
 	public FirstLetterMap(String fileName) {
-		// FILL IN
+		File f = new File(fileName);
+		words = new TreeMap<>();
+		try (Scanner in = new Scanner(f)) {
+			String ln;
+			String[] sep;
+			while (in.hasNextLine()) {
+				ln = in.nextLine().replaceAll("(\\p{Punct})|(\\d)","").toLowerCase();
+				sep = ln.trim().split("\\s+");
+				for (String s : sep) {
+					if (!s.isEmpty()) {
+						words.putIfAbsent(s.charAt(0), new TreeSet<>());
+						words.get(s.charAt(0)).add(s);
+					}
+				}
+			}
+		} catch (FileNotFoundException e) {
+			System.out.printf("File: %s not found", fileName);
+		}
 	}
 
 
@@ -40,7 +57,7 @@ public class FirstLetterMap {
 	 *         character
 	 */
 	public Set<String> getWordsThatStartWith(char c) {
-		return new TreeSet<String>(); // FIX ME
+		return words.get(c);
 	}
 
 
@@ -51,6 +68,6 @@ public class FirstLetterMap {
 	 */
 	@Override
 	public String toString() {
-		return ""; // FIX ME
+		return words.toString();
 	}
 }

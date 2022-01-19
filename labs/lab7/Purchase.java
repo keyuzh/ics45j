@@ -1,5 +1,7 @@
 package labs.lab7;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 
 /**
@@ -9,6 +11,9 @@ import java.time.LocalDate;
 public class Purchase implements Comparable<Purchase> {
 
 	// ADD YOUR INSTANCE VARIABLES HERE
+	LocalDate date;
+	String description;
+	BigDecimal amount;
 
 	/**
 	 * Constructs a new Purchase
@@ -18,22 +23,24 @@ public class Purchase implements Comparable<Purchase> {
 	 * @param amount      the amount of the purchase (if < 0, sets it to 0)
 	 */
 	public Purchase(LocalDate date, String description, double amount) {
-		// FILL IN
+		this.date = date;
+		this.description = description;
+		this.amount = BigDecimal.valueOf(amount);
 	}
 
 
 	public LocalDate getDate() {
-		return LocalDate.now(); // FIX ME
+		return date;
 	}
 
 
 	public String getDescription() {
-		return ""; // FIX ME
+		return description;
 	}
 
 
 	public double getAmount() {
-		return -1.0; // FIX ME
+		return amount.doubleValue();
 	}
 
 
@@ -43,7 +50,8 @@ public class Purchase implements Comparable<Purchase> {
 	 */
 	@Override
 	public String toString() {
-		return ""; // FIX ME
+		DecimalFormat df = new DecimalFormat("0.0#");
+		return String.format("%s %s %s", date.toString(), description, df.format(amount));
 	}
 
 
@@ -52,7 +60,8 @@ public class Purchase implements Comparable<Purchase> {
 	 */
 	@Override
 	public boolean equals(Object o) {
-		return false; // FIX ME
+		Purchase other = (Purchase) o;
+		return (date.equals(other.date) && description.equals(other.description) && (amount.compareTo(other.amount) == 0));
 	}
 
 
@@ -61,7 +70,15 @@ public class Purchase implements Comparable<Purchase> {
 	 * first), then by description (lexicographically)
 	 */
 	public int compareTo(Purchase other) {
-		return -1; // FIX ME
+		int datecmp = date.compareTo(other.date);
+		if (datecmp != 0) {
+			return datecmp;
+		}
+		int amountcmp = amount.compareTo(other.amount);
+		if (amountcmp != 0) {
+			return -amountcmp;
+		}
+		return description.compareTo(other.description);
 	}
 
 }

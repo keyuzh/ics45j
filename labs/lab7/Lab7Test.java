@@ -274,7 +274,7 @@ class Lab7Test {
 	void problem6() {
 
 		// firstLetter1.txt:
-		FirstLetterMap map = new FirstLetterMap("res/firstLetter1.txt");
+		FirstLetterMap map = new FirstLetterMap("labs/lab7/res/firstLetter1.txt");
 		assertEquals(
 				"{a=[a, across, actually, alice, and, at], b=[before], e=[either], f=[feet, flashed, for], h=[had, her, hurried], i=[it, its], l=[looked], m=[mind], n=[never], o=[of, on, or, out], r=[rabbit], s=[seen, she, started], t=[take, that, the, then, to, took], w=[waistcoatpocket, watch, when, with]}",
 				map.toString());
@@ -286,7 +286,7 @@ class Lab7Test {
 		assertEquals(expected, map.getWordsThatStartWith('h'));
 
 		// firstLetter2.txt:
-		map = new FirstLetterMap("res/firstLetter2.txt");
+		map = new FirstLetterMap("labs/lab7/res/firstLetter2.txt");
 		assertEquals(
 				"{a=[a, as], b=[but], d=[disappointment, down], e=[empty], f=[from], g=[great], h=[her], i=[it], j=[jar], l=[labelled], m=[marmalade], o=[of, one, orange], p=[passed], s=[she, shelves], t=[the, to, took], w=[was]}",
 				map.toString());
@@ -296,7 +296,7 @@ class Lab7Test {
 		assertEquals(expected, map.getWordsThatStartWith('h'));
 
 		// firstLetter3.txt:
-		map = new FirstLetterMap("res/firstLetter3.txt");
+		map = new FirstLetterMap("labs/lab7/res/firstLetter3.txt");
 		assertEquals(
 				"{a=[again, alice], b=[began], c=[cat], d=[dinah, dinahll, do, down], e=[else], i=[i], m=[me, miss, much], n=[nothing], s=[should, so, soon], t=[talking, the, there, think, to, tonight], v=[very], w=[was]}",
 				map.toString());
@@ -313,7 +313,7 @@ class Lab7Test {
 		assertEquals(expected, map.getWordsThatStartWith('t'));
 
 		// firstLetter4.txt:
-		map = new FirstLetterMap("res/firstLetter4.txt");
+		map = new FirstLetterMap("labs/lab7/res/firstLetter4.txt");
 		assertEquals(
 				"{a=[again, alice], b=[began, bowls], c=[cat, cream], d=[dinah, dinahll, do, down], e=[eat, else, end], i=[i, ice], m=[me, miss, much], n=[nothing], o=[of], s=[should, so, soon], t=[talking, the, there, think, to, tonight], v=[very], w=[want, was]}",
 				map.toString());
@@ -331,7 +331,7 @@ class Lab7Test {
 		assertEquals(expected, map.getWordsThatStartWith('c'));
 		
 		// test exception message is printed out:
-		String nonExistentFileName = "res/firstLetterDoesNotExist.txt";
+		String nonExistentFileName = "labs/lab7/res/firstLetterDoesNotExist.txt";
 		ByteArrayOutputStream output = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(output));
 		
