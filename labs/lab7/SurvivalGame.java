@@ -5,17 +5,18 @@ import java.awt.Point;
 public class SurvivalGame {
 
 	// ADD YOUR INSTANCE VARIABLES HERE
+	private Player player;
 
 	/**
 	 * Constructs a new survival game with player
 	 */
 	public SurvivalGame() {
-		// FILL IN
+		player = new Player();
 	}
 
 
 	public Player getPlayer() {
-		return new Player(); // FIX ME
+		return player;
 	}
 
 
@@ -27,7 +28,8 @@ public class SurvivalGame {
 	 * @param energyValue energy value of food item
 	 */
 	public void dropFood(Point location, String description, int energyValue) {
-		// FILL IN
+		Food toDrop = new Food(location, player, description, energyValue);
+		player.addFoodToQueue(toDrop);
 	}
 
 }

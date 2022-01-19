@@ -213,11 +213,14 @@ public class PurchaseHistory {
 	@Override
 	public String toString() {
 		purchases.sort(Purchase::compareTo);
-		StringBuilder sb = new StringBuilder();
+//		StringBuilder sb = new StringBuilder();
+		ArrayList<String> temp = new ArrayList<>();
 		for (Purchase p : purchases) {
-			sb.append(p.toString()).append(", ");
+//			sb.append(p.toString()).append(", ");
+			temp.add(p.toString());
 		}
-		return sb.substring(0, sb.length()-2);
+		return String.join(", ", temp);
+//		return sb.substring(0, sb.length()-2);
 	}
 
 }

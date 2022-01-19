@@ -18,7 +18,8 @@ public class ShippingCenter {
 	 * Constructs a new shipping center with empty stacks
 	 */
 	public ShippingCenter() {
-		// FILL IN
+		shippingStack = new Stack<>();
+		temporaryStack = new Stack<>();
 	}
 
 
@@ -30,7 +31,8 @@ public class ShippingCenter {
 	 *         separated by a comma and space
 	 */
 	public String getShippingStack() {
-		return ""; // FIX ME
+//		Stack<String> temp = shippingStack;
+		return String.join(", ", new ArrayList<String>(shippingStack));
 	}
 
 
@@ -42,7 +44,13 @@ public class ShippingCenter {
 	 *         separated by a comma and space
 	 */
 	public String getTemporaryStack() {
-		return ""; // FIX ME
+		return String.join(", ", new ArrayList<String>(temporaryStack));
+//		Stack<String> temp = temporaryStack;
+//		ArrayList<String> l = new ArrayList<>();
+//		while (!temp.empty()) {
+//			l.add(temp.pop());
+//		}
+//		return String.join(", ", l);
 	}
 
 
@@ -53,7 +61,15 @@ public class ShippingCenter {
 	 * @return a log of the process
 	 */
 	public List<String> add(String product) {
-		return new ArrayList<String>(); // FIX ME
+		List<String> log = new ArrayList<>();
+		if (shippingStack.search(product) != -1) {
+			log.add("That product is already on the shipping stack.");
+			return log;
+		}
+		shippingStack.push(product);
+		log.add("Shipping stack: " + getShippingStack());
+		log.add("Temporary stack: " + getTemporaryStack());
+		return log;
 	}
 
 
@@ -65,6 +81,27 @@ public class ShippingCenter {
 	 * @return a log of the process (see example and test file for format)
 	 */
 	public List<String> ship(String product) {
-		return new ArrayList<String>(); // FIX ME
+		List<String> log = new ArrayList<>();
+		int pos = shippingStack.search(product);
+		if (pos == -1) {
+			log.add("That product is not on the shipping stack.");
+			return log;
+		}
+		for (int i = 1; i < pos; i++) {
+			temporaryStack.push(shippingStack.pop());
+			log.add("Shipping stack: " + getShippingStack());
+			log.add("Temporary stack: " + getTemporaryStack());
+		}
+		shippingStack.pop();
+		if (pos == 1) {
+			log.add("Shipping stack: " + getShippingStack());
+			log.add("Temporary stack: " + getTemporaryStack());
+		}
+		for (int i = 1; i < pos; i++) {
+			shippingStack.push(temporaryStack.pop());
+			log.add("Shipping stack: " + getShippingStack());
+			log.add("Temporary stack: " + getTemporaryStack());
+		}
+		return log;
 	}
 }

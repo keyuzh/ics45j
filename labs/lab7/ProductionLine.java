@@ -1,7 +1,7 @@
 package labs.lab7;
 
-import java.util.Queue;
 import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * Class for managing the production queue for Robert's business
@@ -15,7 +15,8 @@ public class ProductionLine {
 	 * Constructs a new production line with empty queues
 	 */
 	public ProductionLine() {
-		// FILL IN
+		standard = new LinkedList<>();
+		rush = new LinkedList<>();
 	}
 
 
@@ -25,7 +26,7 @@ public class ProductionLine {
 	 * @param customerID the customer ID
 	 */
 	public void addStandardOrder(Integer customerID) {
-		// FILL IN
+		standard.add(customerID);
 	}
 
 
@@ -35,7 +36,7 @@ public class ProductionLine {
 	 * @param customerID the customer ID
 	 */
 	public void addRushOrder(Integer customerID) {
-		// FILL IN
+		rush.add(customerID);
 	}
 
 
@@ -46,7 +47,13 @@ public class ProductionLine {
 	 *         "Producing [rush/standard] order for customer [customerID]"
 	 */
 	public String handleNextOrder() {
-		return ""; // FIX ME
+		if (!rush.isEmpty()){
+			return String.format("Producing rush order for customer %d", rush.poll());
+		}
+		if (!standard.isEmpty()) {
+			return String.format("Producing standard order for customer %d", standard.poll());
+		}
+		return "";
 	}
 
 }

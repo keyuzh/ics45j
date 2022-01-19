@@ -8,6 +8,10 @@ import java.awt.Point;
 public class Food implements Comparable {
 
 	// ADD YOUR INSTANCE VARIABLES HERE
+	Point location;
+	Player player;
+	String description;
+	int energyValue;
 
 	/**
 	 * Constructs a new food item
@@ -18,17 +22,20 @@ public class Food implements Comparable {
 	 * @param energyValue energy value of the food item
 	 */
 	public Food(Point location, Player player, String description, int energyValue) {
-		// FILL IN
+		this.location = location;
+		this.player = player;
+		this.description = description;
+		this.energyValue = energyValue;
 	}
 
 
 	public Point getLocation() {
-		return new Point(0, 0); // FIX ME
+		return location;
 	}
 
 
 	public String getDescription() {
-		return ""; // FIX ME
+		return description;
 	}
 
 
@@ -38,7 +45,8 @@ public class Food implements Comparable {
 	 */
 	@Override
 	public int compareTo(Object otherObject) {
-		return -1; // FIX ME
+		Food other = (Food) otherObject;
+		return (int) (other.getNetEnergy() - getNetEnergy());
 	}
 
 
@@ -48,7 +56,7 @@ public class Food implements Comparable {
 	 */
 	@Override
 	public String toString() {
-		return ""; // FIX ME
+		return String.format("%s at location %d, %d, energy value %d", description, location.x, location.y, energyValue);
 	}
 
 
@@ -59,6 +67,8 @@ public class Food implements Comparable {
 	 * @return	the net energy
 	 */
 	public long getNetEnergy() {
-		return -1; // FIX ME
+		long distance = Math.round(Math.sqrt(Math.pow(location.getX()-player.getLocation().getX(), 2) + Math.pow(location.getY()-player.getLocation().getY(), 2) ));
+//		long distance = (int)(Math.sqrt(Math.pow(location.getX()-player.getLocation().getX(), 2) + Math.pow(location.getY()-player.getLocation().getY(), 2) ));
+		return energyValue - distance;
 	}
 }

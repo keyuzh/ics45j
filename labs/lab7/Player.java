@@ -1,6 +1,6 @@
 package labs.lab7;
 
-import java.awt.Point;
+import java.awt.*;
 import java.util.PriorityQueue;
 
 /**
@@ -17,22 +17,24 @@ public class Player {
 	 * Constructs a new player with location 0, 0 and energy 100
 	 */
 	public Player() {
-		// FILL IN
+		location = new Point();
+		energy = 100;
+		foods = new PriorityQueue<>(Food::compareTo);
 	}
 
 
 	public Point getLocation() {
-		return new Point(0, 0); // FIX ME
+		return location;
 	}
 
 
 	public int getEnergy() {
-		return -1; // FIX ME
+		return energy;
 	}
 
 
 	public void setEnergy(int newEnergy) {
-		// FILL IN
+		energy = newEnergy;
 	}
 
 
@@ -42,7 +44,7 @@ public class Player {
 	 * @param f the food item
 	 */
 	public void addFoodToQueue(Food f) {
-		// FILL IN
+		foods.add(f);
 	}
 
 
@@ -57,7 +59,18 @@ public class Player {
 	 * @return the food with highest priority
 	 */
 	public Food getFood() {
-		return null; // FIX ME
+		if (foods.isEmpty()) {
+			return null;
+		}
+		Food toEat = foods.remove();
+		setEnergy((int) (getEnergy() + toEat.getNetEnergy()));
+		location = toEat.getLocation();
+		PriorityQueue<Food> temp = new PriorityQueue<>();
+		while (!foods.isEmpty()) {
+			temp.add(foods.remove());
+		}
+		foods = temp;
+		return toEat;
 	}
 
 }
