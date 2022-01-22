@@ -1,15 +1,14 @@
 package labs.lab8;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
-import java.awt.Color;
-import java.awt.Point;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 class Lab8Test {
 
@@ -83,8 +82,8 @@ class Lab8Test {
 				dblArr3));
 
 	}
-	
-	
+
+
 	@Test
 	void problem3() {
 		List<String> strList = new ArrayList<>();
@@ -105,7 +104,7 @@ class Lab8Test {
 		List<Integer> expIntList = Arrays.asList(4, 3, 2, 1, 0);
 		assertEquals(expIntList, Main.problem3_reverse(intList));
 		assertEquals(expIntList, intList);
-		
+
 		List<Double> dblList = new ArrayList<>();
 		dblList.add(1.5);
 		dblList.add(2.5);
@@ -114,20 +113,20 @@ class Lab8Test {
 		List<Double> expDblList = Arrays.asList(4.5, 3.5, 2.5, 1.5);
 		assertEquals(expDblList, Main.problem3_reverse(dblList));
 		assertEquals(expDblList, dblList);
-		
+
 		List<Point> ptList = new ArrayList<>();
 		ptList.add(new Point(0, 0));
 		List<Point> expPtList = Arrays.asList(new Point(0, 0));
 		assertEquals(expPtList, Main.problem3_reverse(ptList));
 		assertEquals(expPtList, ptList);
-		
+
 		List<Point> ptList2 = new ArrayList<>();
 		List<Point> expPtList2 = new ArrayList<>();
 		assertEquals(expPtList2, Main.problem3_reverse(ptList2));
 		assertEquals(expPtList2, ptList2);
 	}
-	
-	
+
+
 	@Test
 	void problem4() {
 		List<String> a = new ArrayList<>();
@@ -166,12 +165,12 @@ class Lab8Test {
 
 		d.set(2, d.get(2) * 2);
 		assertFalse(Main.problem4_isDecreasing(d));
-		
+
 		List<Double> e = new ArrayList<>();
 		for (double i = 0; i < 10; i += 2.5)
 			e.add(i);
 		assertFalse(Main.problem4_isDecreasing(e));
-		
+
 		List<Double> f = new ArrayList<>();
 		for (double i = 10; i >= 0; i -= 2.5)
 			f.add(i);
@@ -182,15 +181,15 @@ class Lab8Test {
 
 		f.set(2, f.get(2) * 2);
 		assertFalse(Main.problem4_isDecreasing(f));
-		
+
 		List<String> g = new ArrayList<>();
 		assertTrue(Main.problem4_isDecreasing(g));
-		
+
 		g.add("Robert");
 		assertTrue(Main.problem4_isDecreasing(g));
 	}
-	
-	
+
+
 	@Test
 	void problem5() {
 		List<Pair<String, Color>> colors = new ArrayList<>();
@@ -198,10 +197,10 @@ class Lab8Test {
 		colors.add(new Pair("Adam", Color.RED));
 		colors.add(new Pair("Eve", Color.BLUE));
 		Map<String, Color> colorMap = Main.problem5_listToMap(colors);
-		assertEquals(Color.BLUE, colorMap.get("Juliet")); 
+		assertEquals(Color.BLUE, colorMap.get("Juliet"));
 		assertEquals(Color.RED, colorMap.get("Adam"));
 		assertEquals(Color.BLUE, colorMap.get("Eve"));
-		
+
 		List<Pair<Integer, String>> places = new ArrayList<>();
 		places.add(new Pair(5, "Sam"));
 		places.add(new Pair(18, "Paris"));
@@ -210,19 +209,19 @@ class Lab8Test {
 		Map<Integer, String> placesMap = Main.problem5_listToMap(places);
 		assertEquals("Robert", placesMap.get(1));
 		assertEquals("Halle", placesMap.get(3));
-		assertEquals("Sam", placesMap.get(5)); 
+		assertEquals("Sam", placesMap.get(5));
 		assertEquals("Paris", placesMap.get(18));
-		
+
 		List<Pair<Double, Double>> nums1 = new ArrayList<>();
 		nums1.add(new Pair(0.0, 5.9));
 		Map<Double, Double> nums1Map = Main.problem5_listToMap(nums1);
 		assertEquals(5.9, nums1Map.get(0.0));
-		assertNull(nums1Map.get(5.9)); 
-		
+		assertNull(nums1Map.get(5.9));
+
 		// empty list:
 		List<Pair<String, Double>> empty = new ArrayList<>();
 		Map<String, Double> emptyMap = Main.problem5_listToMap(empty);
-		assertNull(emptyMap.get("Robert")); 
+		assertNull(emptyMap.get("Robert"));
 	}
 
 }

@@ -1,5 +1,9 @@
 package labs.lab8;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class Main {
 
 	/**
@@ -12,6 +16,16 @@ public class Main {
 	 * @return the reversed list
 	 */
 	// WRITE PROBLEM 3 METHOD HERE
+	public static <T> List<T> problem3_reverse(List<T> a) {
+		int midpoint = a.size() / 2;
+		for (int front = 0; front < midpoint; front++) {
+			int back = a.size() - front - 1;
+			T temp = a.get(front);
+			a.set(front, a.get(back));
+			a.set(back, temp);
+		}
+		return a;
+	}
 
 
 	/**
@@ -26,6 +40,14 @@ public class Main {
 	 * @return true if decreasing, false if not
 	 */
 	// WRITE PROBLEM 4 METHOD HERE
+	public static <T extends Comparable<T>> boolean problem4_isDecreasing(List<T> a) {
+		for (int i = 0; i < a.size()-1; i++) {
+			if (a.get(i).compareTo(a.get(i+1)) < 0) {
+				return false;
+			}
+		}
+		return true;
+	}
 
 
 	/**
@@ -40,5 +62,12 @@ public class Main {
 	 *         to its second element
 	 */
 	// WRITE PROBLEM 5 METHOD HERE
+	public static <K,V> Map<K,V> problem5_listToMap(List<Pair<K,V>> list) {
+		HashMap<K, V> hm = new HashMap<>();
+		for (Pair<K, V> p : list) {
+			hm.put(p.getFirst(), p.getSecond());
+		}
+		return hm;
+	}
 
 }

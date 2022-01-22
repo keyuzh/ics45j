@@ -1,10 +1,15 @@
 package labs.lab8;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * A utility class for appending lists/arrays
  *
  */
-public class Appender {
+public class Appender<T> {
 
 	/**
 	 * Appends two lists together.
@@ -19,6 +24,12 @@ public class Appender {
 	 * @return a new list containing the elements of a and b appended
 	 */
 	// WRITE METHOD HERE
+	public static <T> List<T> append(List<T> a, List<T> b) {
+		List<T> res = new ArrayList<>();
+		res.addAll(a);
+		res.addAll(b);
+		return res;
+	}
 
 
 	/**
@@ -30,9 +41,18 @@ public class Appender {
 	 * @param <T> the type contained in the arrays
 	 * @param a   array 1
 	 * @param b   array 2
-	 * 
+	 *
 	 * @return a new array containing the elements of a and b appended
 	 */
 	// WRITE METHOD HERE
+	public static <T> T[] append(T[] a, T[] b) {
+		ArrayList<T> res = new ArrayList<>();
+		res.addAll(Arrays.asList(a));
+		res.addAll(Arrays.asList(b));
+		//TODO: what if both array is empty
+		T[] r = (T[]) Array.newInstance(res.get(0).getClass(), a.length+b.length);
+		return res.toArray(r);
+
+	}
 
 }

@@ -3,16 +3,16 @@ package labs.lab8;
 /**
  * A class for executing selection sorting on an array.
  */
-public class SelectionSorter {
+public class SelectionSorter <E extends Comparable<E>> {
 
-	private String[] a;
+	private E[] a;
 
 	/**
 	 * Constructs a SelectionSorter.
 	 * 
 	 * @param anArray a sorted array
 	 */
-	public SelectionSorter(String[] anArray) {
+	public SelectionSorter(E[] anArray) {
 		a = anArray;
 	}
 
@@ -33,7 +33,7 @@ public class SelectionSorter {
 				}
 			}
 			if (minimum != position) {
-				String swap = a[position];
+				E swap = a[position];
 				a[position] = a[minimum];
 				a[minimum] = swap;
 			}
