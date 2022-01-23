@@ -84,11 +84,10 @@ public class CreditCard {
 		// sum in odd numbered indexes
 		for (int i = 1; i < 16; i++) {
 			int n = getNumberAt(i);
-			if (n > 5) { large++; } // TODO: 1/10/22 CHECK PROBLEM DESCRIPTION 
+			if (n > 5) { large++; }
 			sum += n;
 		}
 		sum += large;
-//		return false; // TODO: 1/10/22 DELETE
 		return (sum % 3 == 0);
 	}
 
