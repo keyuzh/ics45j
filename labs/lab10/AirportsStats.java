@@ -1,11 +1,7 @@
 package labs.lab10;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.OptionalDouble;
+import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -20,7 +16,7 @@ public class AirportsStats {
 	 * name
 	 */
 	public static List<Airport> problem1_getAirportsInCountry(Stream<Airport> airports, String country) {
-		return new ArrayList<Airport>(); // FIX ME
+		return airports.filter(airport -> airport.getCountry().equals(country)).sorted().collect(Collectors.toList());
 	}
 
 
@@ -31,7 +27,8 @@ public class AirportsStats {
 	 */
 	public static String problem2_getAllAirportsInAltitudeRange(Stream<Airport> airports, double minAltitude,
 			double maxAltitude) {
-		return ""; // FIX ME
+		return airports.filter(a -> a.getAltitude() >= minAltitude && a.getAltitude() <= maxAltitude)
+				.map(Airport::getName).sorted().collect(Collectors.joining(", "));
 	}
 
 
@@ -48,7 +45,8 @@ public class AirportsStats {
 	 * 
 	 */
 	public static List<String> problem3_getTopNCitiesWithMostAirports(Stream<Airport> airports, int n) {
-		return new ArrayList<String>(); // FIX ME
+		Map<String, Long> airportCount = airports.filter(a->!a.getCity().isEmpty()).collect(Collectors.groupingBy(Airport::getCity, Collectors.counting()));
+		return airportCount.keySet().stream().toList().stream().sorted((x, y) -> (int) (airportCount.get(y) - airportCount.get(x))).limit(n).collect(Collectors.toList());
 	}
 
 
@@ -57,7 +55,7 @@ public class AirportsStats {
 	 * in the stream. Do not count blank city names.
 	 */
 	public static long problem4_countCities(Stream<Airport> airports) {
-		return -1; // FIX ME
+		return airports.map(Airport::getCity).filter(c->!c.isEmpty()).distinct().count();
 	}
 
 
@@ -69,7 +67,7 @@ public class AirportsStats {
 	 * empty Optional<Airport>
 	 */
 	public static Optional<Airport> problem5_getFirstAirportContainingString(Stream<Airport> airports, String str) {
-		return Optional.empty(); // FIX ME
+		return airports.filter(a -> a.getName().toLowerCase().contains(str.toLowerCase())).findFirst();
 	}
 
 
@@ -85,7 +83,10 @@ public class AirportsStats {
 	 */
 	public static List<String> problem6_getTopNAirportsClosestTo(Stream<Airport> airports, Coordinates coordinates,
 			int n) {
-		return new ArrayList<String>(); // FIX ME
+		return airports.sorted((x, y) ->
+				(int) (Coordinates.distance(x.getCoordinates().latitude, x.getCoordinates().longitude, coordinates.latitude, coordinates.longitude)
+						- Coordinates.distance(y.getCoordinates().latitude, y.getCoordinates().longitude, coordinates.latitude, coordinates.longitude))
+		).limit(n).map(Airport::getName).collect(Collectors.toList());
 	}
 
 
@@ -96,7 +97,8 @@ public class AirportsStats {
 	 * If the stream is empty, return an empty OptionalDouble
 	 */
 	public static OptionalDouble problem7_averageAltitude(Stream<Airport> airports) {
-		return OptionalDouble.empty(); // FIX ME
+		Double avg = airports.collect(Collectors.averagingDouble(Airport::getAltitude));
+		return avg.equals(0.0) ? OptionalDouble.empty() : OptionalDouble.of(avg);
 	}
 
 
@@ -111,7 +113,7 @@ public class AirportsStats {
 	 * If the stream is empty, return an empty map.
 	 */
 	public static Map<Integer, Long> problem8_countAirportsByNumWordsInName(Stream<Airport> airports) {
-		return new HashMap<Integer, Long>(); // FIX ME
+		return airports.collect(Collectors.groupingBy((a -> a.getName().split("\\s+").length),Collectors.counting()));
 	}
 
 
@@ -123,7 +125,8 @@ public class AirportsStats {
 	 * If the stream is empty, return 0.
 	 */
 	public static double problem9_percentAirportsWithCountryInName(Stream<Airport> airports) {
-		return -1.0; // FIX ME
+		List<Boolean> cnt = airports.map(a -> a.getName().toLowerCase().contains(a.getCountry().toLowerCase())).toList();
+		return cnt.isEmpty() ? 0 : 100.0 * cnt.stream().filter(Boolean::booleanValue).count() / cnt.size();
 	}
 
 
@@ -134,6 +137,8 @@ public class AirportsStats {
 	 * appear in the stream.
 	 */
 	public static List<Airport> problem10_getAirportWithLongestName(Stream<Airport> airports) {
-		return new ArrayList<Airport>(); // FIX ME
+		List<Airport> airportList = airports.toList();
+		Optional<Integer> longest = airportList.stream().map(a -> a.getName().length()).max(Integer::compareTo);
+		return longest.isEmpty() ? Collections.<Airport>emptyList() : airportList.stream().filter(n -> n.getName().length() == longest.get()).collect(Collectors.toList());
 	}
 }

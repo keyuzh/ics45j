@@ -1,15 +1,14 @@
 package labs.lab10;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.OptionalDouble;
-import java.util.Set;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 class Lab10Test {
 	
@@ -30,7 +29,7 @@ class Lab10Test {
 	//This method will be executed before all the other methods.
 	@BeforeEach
 	void before() {
-		String path = "res/"; //<- Assign the path of the .dat files to this variable. Do not include the file name, 
+		String path = "./labs/lab10/res/"; //<- Assign the path of the .dat files to this variable. Do not include the file name,
 								// it will be added below.
 		airportsList = AirportsReader.readAirports(path + "airports.dat");
 		airportsList1 = AirportsReader.readAirports(path + "airports1.dat");
