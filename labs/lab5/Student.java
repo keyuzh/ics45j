@@ -49,8 +49,10 @@ public class Student implements Comparable {
 
 	@Override
 	public boolean equals(Object otherObject) {
-        Student other = (Student) otherObject;
-		return (id == other.getId() && name.equals(other.getName()));
+		if (otherObject instanceof Student other) {
+			return (id == other.getId() && name.equals(other.getName()));
+		}
+		return false;
 	}
 
 
