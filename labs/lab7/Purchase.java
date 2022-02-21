@@ -60,8 +60,10 @@ public class Purchase implements Comparable<Purchase> {
 	 */
 	@Override
 	public boolean equals(Object o) {
-		Purchase other = (Purchase) o;
-		return (date.equals(other.date) && description.equals(other.description) && (amount.compareTo(other.amount) == 0));
+		if (o instanceof Purchase other) {
+			return (date.equals(other.date) && description.equals(other.description) && (amount.compareTo(other.amount) == 0));
+		}
+		return false;
 	}
 
 

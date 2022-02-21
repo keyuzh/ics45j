@@ -45,12 +45,6 @@ public class ShippingCenter {
 	 */
 	public String getTemporaryStack() {
 		return String.join(", ", new ArrayList<String>(temporaryStack));
-//		Stack<String> temp = temporaryStack;
-//		ArrayList<String> l = new ArrayList<>();
-//		while (!temp.empty()) {
-//			l.add(temp.pop());
-//		}
-//		return String.join(", ", l);
 	}
 
 
