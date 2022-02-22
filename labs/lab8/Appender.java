@@ -49,7 +49,6 @@ public class Appender<T> {
 		ArrayList<T> res = new ArrayList<>();
 		res.addAll(Arrays.asList(a));
 		res.addAll(Arrays.asList(b));
-		//TODO: what if both array is empty
 		T[] r = (T[]) Array.newInstance(res.get(0).getClass(), a.length+b.length);
 		return res.toArray(r);
 
