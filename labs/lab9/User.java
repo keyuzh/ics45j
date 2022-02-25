@@ -1,17 +1,25 @@
 package labs.lab9;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class User {
     private final String name;
-    private String currentActivity;
-    private String mood;
-    private ArrayList<User> taggedFriends;
+    private final String currentActivity;
+    private final Mood mood;
+    private final List<String> taggedFriends;
 
-    public User(String name, String currentActivity, String mood) {
+    public User(String name) {
         this.name = name;
-        this.currentActivity = currentActivity;
-        this.mood = mood;
+        this.currentActivity = "";
+        this.mood = Mood.Happy;
+        this.taggedFriends = new ArrayList<>();
+    }
+    public User(String name, String newActivity, Mood newMood, List<String> newtagged) {
+        this.name = name;
+        this.currentActivity = newActivity;
+        this.mood = newMood;
+        this.taggedFriends = newtagged;
     }
 
     public String getName() {
@@ -22,44 +30,21 @@ public class User {
         return currentActivity;
     }
 
-    public void setCurrentActivity(String currentActivity) {
-        this.currentActivity = currentActivity;
-    }
-
-    public String getMood() {
+    public Mood getMood() {
         return mood;
     }
 
-    public void setMood(String mood) {
-        this.mood = mood;
-    }
-
-    public ArrayList<User> getTaggedFriends() {
+    public List<String> getTaggedFriends() {
         return taggedFriends;
-    }
-
-    public void setTaggedFriends(ArrayList<User> taggedFriends) {
-        this.taggedFriends = taggedFriends;
-    }
-
-    public void save(String newActivity, String newMood, ArrayList<User> newtagged) {
-        this.currentActivity = newActivity;
-        this.mood = newMood;
-        this.taggedFriends = newtagged;
     }
 
     @Override
     public String toString() {
-        StringBuilder result = new StringBuilder(String.format("%s is feeling %s, %s", name, mood, currentActivity));
+        StringBuilder sb = new StringBuilder(String.format("%s is feeling %s, %s", name, mood, currentActivity));
         if (!taggedFriends.isEmpty()) {
-            result.append(" with ");
-            for (int i = 0; i < taggedFriends.size(); i++) {
-                result.append(taggedFriends.get(i).getName());
-                if (i != taggedFriends.size()-1) {
-                    result.append(", ");
-                }
-            }
+            sb.append(" with ");
+            sb.append(String.join(", ", taggedFriends));
         }
-        return result.toString();
+        return sb.toString();
     }
 }
