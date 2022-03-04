@@ -145,11 +145,6 @@ public class FriendTrackerGUI extends JFrame{
         feed.setLineWrap(false);
         JScrollPane scrollPane = new JScrollPane(feed);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                scrollPane.getVerticalScrollBar().setValue(0);
-            }
-        });
         panel.add(scrollPane);
         add(panel);
     }
